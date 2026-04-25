@@ -16,7 +16,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
-    build = "make install_jsregexp",  -- 编译正则支持（可选）
+    build = "make install_jsregexp", -- 编译正则支持（可选）
     dependencies = {
       -- 预置的各语言代码片段集合
       "rafamadriz/friendly-snippets",
@@ -49,15 +49,15 @@ return {
   -- ─────────────────────────────────────────────
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",  -- 进入插入模式时加载
+    event = "InsertEnter",        -- 进入插入模式时加载
     dependencies = {
-      "L3MON4D3/LuaSnip",               -- 代码片段引擎
-      "saadparwaiz1/cmp_luasnip",        -- LuaSnip 的 cmp source
-      "hrsh7th/cmp-nvim-lsp",            -- LSP 补全 source
-      "hrsh7th/cmp-buffer",              -- 当前 buffer 词汇补全
-      "hrsh7th/cmp-path",                -- 文件路径补全
-      "hrsh7th/cmp-cmdline",             -- 命令行补全
-      "onsails/lspkind.nvim",            -- 补全菜单图标（显示类型图标）
+      "L3MON4D3/LuaSnip",         -- 代码片段引擎
+      "saadparwaiz1/cmp_luasnip", -- LuaSnip 的 cmp source
+      "hrsh7th/cmp-nvim-lsp",     -- LSP 补全 source
+      "hrsh7th/cmp-buffer",       -- 当前 buffer 词汇补全
+      "hrsh7th/cmp-path",         -- 文件路径补全
+      "hrsh7th/cmp-cmdline",      -- 命令行补全
+      "onsails/lspkind.nvim",     -- 补全菜单图标（显示类型图标）
     },
     config = function()
       local cmp = require("cmp")
@@ -68,14 +68,14 @@ return {
         -- ── 代码片段扩展配置 ──────────────────────
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body)  -- 使用 LuaSnip 展开片段
+            luasnip.lsp_expand(args.body) -- 使用 LuaSnip 展开片段
           end,
         },
 
         -- ── 补全窗口样式 ──────────────────────────
         window = {
-          completion    = cmp.config.window.bordered(),  -- 带边框的补全窗口
-          documentation = cmp.config.window.bordered(),  -- 带边框的文档窗口
+          completion    = cmp.config.window.bordered(), -- 带边框的补全窗口
+          documentation = cmp.config.window.bordered(), -- 带边框的文档窗口
         },
 
         -- ── 键位映射 ──────────────────────────────
@@ -85,8 +85,8 @@ return {
           ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 
           -- 翻页（文档预览窗口）
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),  -- 文档向上滚动
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),   -- 文档向下滚动
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4), -- 文档向上滚动
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),  -- 文档向下滚动
 
           -- 手动触发补全
           ["<C-Space>"] = cmp.mapping.complete(),
@@ -94,20 +94,40 @@ return {
           -- 关闭补全菜单
           ["<C-e>"] = cmp.mapping.abort(),
 
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump() -- 代码片段跳转
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+
           -- Enter 确认选中项
           ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,  -- 替换模式（替换光标后的文字）
-            select = false,  -- false = 只有明确选中才确认（不自动选第一个）
+            behavior = cmp.ConfirmBehavior.Replace, -- 替换模式（替换光标后的文字）
+            select = true,                          -- false = 只有明确选中才确认（不自动选第一个）
           }),
         }),
 
         -- ── 补全来源配置 ──────────────────────────
         -- 按优先级从高到低排列，排在前面的补全结果会靠前显示
         sources = cmp.config.sources({
-          { name = "nvim_lsp", priority = 1000 },  -- LSP 补全（最高优先级）
-          { name = "luasnip",  priority = 750 },   -- 代码片段
-          { name = "buffer",   priority = 500 },   -- 当前文件词汇
-          { name = "path",     priority = 250 },   -- 文件路径
+          { name = "nvim_lsp", priority = 1000 }, -- LSP 补全（最高优先级）
+          { name = "luasnip",  priority = 750 },  -- 代码片段
+          { name = "buffer",   priority = 500 },  -- 当前文件词汇
+          { name = "path",     priority = 250 },  -- 文件路径
         }),
 
         -- ── 补全菜单格式化（显示图标和来源）────────
@@ -118,15 +138,15 @@ return {
             ellipsis_char = "...", -- 超出时显示省略号
             -- 每种类型对应的图标（lspkind 已内置，这里可自定义）
             symbol_map = {
-              Text          = "󰉿",
-              Method        = "󰆧",
-              Function      = "󰊕",
-              Constructor   = "",
-              Variable      = "󰀫",
-              Class         = "󰠱",
-              Interface     = "",
-              Module        = "",
-              Snippet       = "",
+              Text        = "󰉿",
+              Method      = "󰆧",
+              Function    = "󰊕",
+              Constructor = "",
+              Variable    = "󰀫",
+              Class       = "󰠱",
+              Interface   = "",
+              Module      = "",
+              Snippet     = "",
             },
             -- 在图标后显示来源名称（[LSP] [Buffer] 等）
             before = function(entry, vim_item)
@@ -147,8 +167,8 @@ return {
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = "path" },     -- 命令行中的路径补全
-          { name = "cmdline" },  -- 命令补全
+          { name = "path" },    -- 命令行中的路径补全
+          { name = "cmdline" }, -- 命令补全
         }),
       })
 
