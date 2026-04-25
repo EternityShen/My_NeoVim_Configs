@@ -189,7 +189,7 @@ return {
           { icon = "  ", key = "g", desc = "G-全局搜索", action = "Telescope live_grep" },
           { icon = "  ", key = "c", desc = "C-打开配置", action = "edit ~/.config/nvim/init.lua" },
           { icon = "  ", key = "l", desc = "L-插件管理", action = "Lazy" },
-          { icon = "  󰩈", key = "q", desc = "OvO-退出", action = "qa" },
+          { icon = "   ", key = "q", desc = "OvO-退出", action = "qa" },
         },
         footer = { "   OvO ShenEternity Let's go！" }, -- 底部文字
       },
