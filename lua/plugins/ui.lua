@@ -55,53 +55,10 @@ return {
     },
     opts = {
       options = {
-        disabled_filetypes = {
-          statusline = {
-            "NvimTree",
-            "neo-tree",
-            "TelescopePrompt",
-            "TelescopeResults",
-            "noice",  -- noice 通知窗口
-            "notify", -- 通知
-            "dashboard",
-            "lazy",
-            "mason",
-            "help",
-            "qf",
-            "toggleterm",
-            "DressingInput",
-            "Outline",
-            "spectre_panel",
-            "startify",
-            "fugitive",
-            "fugitiveblame",
-            "diff",
-            "lspinfo",
-            "checkhealth",
-            "man",
-            "oil",
-            "aerial",
-            "dapui_watches",
-            "dapui_stacks",
-            "dapui_breakpoints",
-            "dapui_scopes",
-            "dapui_console",
-            "dapui_repl",
-            "noice",
-          },
-        },
-        ignore_focus = {
-          "NvimTree",
-          "neo-tree",
-          "TelescopePrompt",
-          "noice",
-          "notify",
-        },
-
         theme = "catppuccin",       -- 使用与主题匹配的配色
         component_separators = "|", -- 组件间的分隔符
         section_separators = "",    -- 区域间的分隔符（空字符串=无分隔图标）
-        globalstatus = true,        -- 所有窗口共用一个状态栏（Neovim 0.7+ 支持
+        globalstatus = false,       -- 所有窗口共用一个状态栏（Neovim 0.7+ 支持
 
       },
       sections = {
