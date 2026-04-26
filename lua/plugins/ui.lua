@@ -55,10 +55,54 @@ return {
     },
     opts = {
       options = {
+        disabled_filetypes = {
+          statusline = {
+            "NvimTree",
+            "neo-tree",
+            "TelescopePrompt",
+            "TelescopeResults",
+            "noice",  -- noice 通知窗口
+            "notify", -- 通知
+            "dashboard",
+            "lazy",
+            "mason",
+            "help",
+            "qf",
+            "toggleterm",
+            "DressingInput",
+            "Outline",
+            "spectre_panel",
+            "startify",
+            "fugitive",
+            "fugitiveblame",
+            "diff",
+            "lspinfo",
+            "checkhealth",
+            "man",
+            "oil",
+            "aerial",
+            "dapui_watches",
+            "dapui_stacks",
+            "dapui_breakpoints",
+            "dapui_scopes",
+            "dapui_console",
+            "dapui_repl",
+            "noice",
+          },
+        },
+        ignore_focus = {
+          "NvimTree",
+          "neo-tree",
+          "TelescopePrompt",
+          "noice",
+          "notify",
+        },
+
         theme = "catppuccin",       -- 使用与主题匹配的配色
         component_separators = "|", -- 组件间的分隔符
         section_separators = "",    -- 区域间的分隔符（空字符串=无分隔图标）
-        globalstatus = true,        -- 所有窗口共用一个状态栏（Neovim 0.7+ 支持）
+        globalstatus = true,        -- 所有窗口共用一个状态栏（Neovim 0.7+ 支持
+
       },
       sections = {
         -- 状态栏左侧内容（从左到右）
@@ -88,32 +132,109 @@ return {
   {
     "akinsho/bufferline.nvim",
     version = "*",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    event = "UIEnter",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
+      local function smart_close()
+        -- 保存修改
+        if vim.bo.modified then
+          vim.cmd.write()
+        end
+
+        local current_buf = vim.fn.bufnr()
+        local buflisted = vim.fn.getbufinfo({ buflisted = 1 })
+
+        -- 如果只有一个 buffer，直接关闭并创建新文件
+        if #buflisted <= 1 then
+          vim.cmd("bdelete!")
+          vim.cmd("enew")
+          return
+        end
+
+        -- 查找当前 buffer 的位置
+        local current_idx = 0
+        for i, buf in ipairs(buflisted) do
+          if buf.bufnr == current_buf then
+            current_idx = i
+            break
+          end
+        end
+
+        -- 决定切换到哪个 buffer
+        if current_idx > 0 then
+          if current_idx < #buflisted then
+            -- 切换到下一个
+            vim.cmd("BufferLineCycleNext")
+          else
+            -- 切换到上一个
+            vim.cmd("BufferLineCyclePrev")
+          end
+        end
+
+        -- 关闭原 buffer
+        vim.cmd("bdelete! " .. current_buf)
+      end
+
       require("bufferline").setup({
         options = {
-          mode = "buffers",              -- 显示 buffer（也可设为 "tabs" 显示标签页）
-          numbers = "none",              -- buffer 编号不显示
-          close_command = "bdelete! %d", -- 点击 x 关闭 buffer
-          diagnostics = "nvim_lsp",      -- 在 buffer 标签上显示 LSP 错误图标
-          diagnostics_indicator = function(count, level)
-            local icon = level:match("error") and " " or " "
-            return " " .. icon .. count
-          end,
+          mode = "buffers",
+          style_preset = require("bufferline").style_preset.default,
+          themable = true,
+          numbers = "none",
+          close_command = smart_close,
+          right_mouse_command = smart_close,
+          middle_mouse_command = smart_close,
+          indicator = {
+            style = "icon",
+          },
+          buffer_close_icon = "󰅖",
+          modified_icon = "●",
+          close_icon = "",
+          left_trunc_marker = "",
+          right_trunc_marker = "",
+          max_name_length = 18,
+          max_prefix_length = 15,
+          truncate_names = true,
+          tab_size = 18,
+          diagnostics = "nvim_lsp",
+          diagnostics_update_in_insert = false,
           offsets = {
             {
-              filetype = "NvimTree", -- 有 nvim-tree 时，bufferline 向右偏移
-              text = "ShenEternity 文件树  OvO",
+              filetype = "NvimTree",
+              text = "File Explorer",
               highlight = "Directory",
               text_align = "left",
             },
           },
+          color_icons = true,
+          show_buffer_icons = true,
           show_buffer_close_icons = true,
-          show_close_icon = false,
-          separator_style = "slant", -- 可选 "slant" | "thick" | "thin"
+          show_close_icon = true,
+          show_tab_indicators = true,
+          persist_buffer_sort = true,
+          separator_style = "thin",
+          enforce_regular_tabs = false,
+          always_show_bufferline = true,
+          hover = {
+            enabled = true,
+            delay = 200,
+            reveal = { "close" },
+          },
         },
       })
+
+      -- 快捷键映射
+      vim.keymap.set("n", "<leader>bc", smart_close, { desc = "智能关闭buffer" })
+      vim.keymap.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", { desc = "关闭其他buffer" })
+      vim.keymap.set("n", "<leader>bl", ":BufferLineCloseLeft<CR>", { desc = "关闭左侧buffer" })
+      vim.keymap.set("n", "<leader>br", ":BufferLineCloseRight<CR>", { desc = "关闭右侧buffer" })
+
+      -- 切换 buffer
+      vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", { desc = "上一个buffer" })
+      vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", { desc = "下一个buffer" })
+
+      -- 移动 buffer
+      vim.keymap.set("n", "<leader>bh", ":BufferLineMovePrev<CR>", { desc = "向左移动buffer" })
+      vim.keymap.set("n", "<leader>bl", ":BufferLineMoveNext<CR>", { desc = "向右移动buffer" })
     end,
   },
 
@@ -125,7 +246,7 @@ return {
     "rcarriga/nvim-notify",
     opts = {
       timeout = 3000,     -- 通知显示 3 秒后自动消失
-      max_width = 50,     -- 通知弹窗最大宽度
+      max_width = 100,    -- 通知弹窗最大宽度
       render = "compact", -- 样式（default/compact/minimal）
       stages = "fade",    -- 动画效果（fade/slide/fade_in_slide_out/static）
     },
@@ -200,14 +321,124 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      -- add any options here
+      -- 命令行配置
+      cmdline = {
+        view = "cmdline_popup", -- 使用弹出式命令行
+        format = {
+          -- 隐藏命令行中的搜索计数
+          search_down = { icon = " " },
+          search_up = { icon = " " },
+        },
+      },
+
+      -- 消息配置
+      messages = {
+        enabled = true,
+        view = "notify", -- 使用通知样式
+        view_error = "notify",
+        view_warn = "notify",
+        view_history = "messages",
+        view_search = "virtualtext",
+      },
+
+      -- 弹出窗口配置
+      popupmenu = {
+        enabled = true,
+        backend = "nui",   -- 使用 nui 后端
+        kind_icons = true, -- 显示类型图标
+      },
+
+      -- 视图配置
+      views = {
+        -- 命令行弹出窗口
+        cmdline_popup = {
+          position = {
+            row = 2, -- 从第2行开始（留出状态栏空间）
+            col = "50%",
+          },
+          size = {
+            width = 60,
+            height = "auto",
+          },
+          border = {
+            style = "rounded",
+            padding = { 0, 1 },
+          },
+          win_options = {
+            winhighlight = {
+              Normal = "Normal",
+              FloatBorder = "FloatBorder",
+            },
+          },
+        },
+
+        -- 弹出菜单
+        popupmenu = {
+          relative = "editor",
+          position = {
+            row = 8, -- 第8行
+            col = "50%",
+          },
+          size = {
+            width = 60,
+            height = 10,
+          },
+          border = {
+            style = "rounded",
+            padding = { 0, 1 },
+          },
+          win_options = {
+            winhighlight = {
+              Normal = "Normal",
+              FloatBorder = "FloatBorder",
+            },
+          },
+        },
+
+        -- 通知窗口（也放在上方）
+        notify = {
+          position = {
+            row = 3, -- 第3行
+            col = "50%",
+          },
+          size = {
+            width = 50,
+            height = "auto",
+          },
+          border = {
+            style = "rounded",
+          },
+        },
+      },
+
+      -- 路由配置
+      routes = {
+        -- 将命令行输出重定向到弹出窗口
+        {
+          view = "cmdline_popup",
+          filter = { event = "cmdline", kind = "search" },
+        },
+        {
+          view = "cmdline_popup",
+          filter = { event = "cmdline", kind = ":" },
+        },
+        {
+          view = "cmdline_popup",
+          filter = { event = "cmdline", kind = "/" },
+        },
+      },
+
+      -- 预设配置
+      presets = {
+        bottom_search = false,  -- 禁用底部搜索
+        command_palette = true, -- 启用命令面板
+        long_message_to_split = true,
+        inc_rename = true,      -- 启用增量重命名
+        lsp_doc_border = true,  -- LSP文档边框
+      },
     },
     dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
     }
   }
