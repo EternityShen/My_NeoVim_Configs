@@ -66,32 +66,7 @@ return {
       -- 加载 fzf 扩展（提升搜索性能）
       pcall(telescope.load_extension, "fzf")
 
-      -- ── 快捷键配置 ────────────────────────────────────
-      local map = vim.keymap.set
-      local builtin = require("telescope.builtin")
-
-      -- 文件搜索
-      map("n", "<leader>ff", builtin.find_files, { desc = "查找文件" })
-      map("n", "<leader>fr", builtin.oldfiles, { desc = "最近打开的文件" })
-      map("n", "<leader>fb", builtin.buffers, { desc = "查找已打开的 Buffer" })
-
-      -- 内容搜索
-      map("n", "<leader>fg", builtin.live_grep, { desc = "全局内容搜索 (grep)" })
-      map("n", "<leader>fw", builtin.grep_string, { desc = "搜索光标下的单词" })
-
-      -- Git 相关搜索
-      map("n", "<leader>gc", builtin.git_commits, { desc = "搜索 git commits" })
-      map("n", "<leader>gb", builtin.git_branches, { desc = "搜索 git 分支" })
-
-      -- Neovim 相关搜索
-      map("n", "<leader>fh", builtin.help_tags, { desc = "搜索帮助文档" })
-      map("n", "<leader>fk", builtin.keymaps, { desc = "搜索快捷键" })
-      map("n", "<leader>fc", builtin.commands, { desc = "搜索命令" })
-      map("n", "<leader>fd", builtin.diagnostics, { desc = "搜索 LSP 诊断信息" })
-
-      -- 搜索当前文件的函数/符号
-      map("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "搜索文件符号" })
-      map("n", "<leader>fS", builtin.lsp_workspace_symbols, { desc = "搜索工作区符号" })
+      -- 快捷键配置已迁移到 keymaps.lua
     end,
   },
 }

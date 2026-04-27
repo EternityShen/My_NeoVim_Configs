@@ -40,40 +40,8 @@ return {
     config = function()
       -- ── 通用 LSP 键位映射 ──────────────────────────
       -- 这些快捷键在任何有 LSP 支持的文件里都可以用
-      local on_attach = function(client, bufnr)
-        -- on_attach 在 LSP 服务器连接到 buffer 时执行
-
-        local map = function(keys, func, desc)
-          vim.keymap.set("n", keys, func,
-            { buffer = bufnr, noremap = true, silent = true, desc = "LSP: " .. desc })
-        end
-
-        -- 跳转
-        map("gd", vim.lsp.buf.definition, "跳转到定义")
-        map("gD", vim.lsp.buf.declaration, "跳转到声明")
-        map("gi", vim.lsp.buf.implementation, "跳转到实现")
-        map("gr", require("telescope.builtin").lsp_references, "查看所有引用")
-        map("gt", vim.lsp.buf.type_definition, "跳转到类型定义")
-
-        -- 查看信息
-        map("K", vim.lsp.buf.hover, "悬浮文档（按两次进入）")
-        map("<C-k>", vim.lsp.buf.signature_help, "函数签名帮助")
-        map("<leader>li", vim.lsp.buf.incoming_calls, "查看调用者")
-
-        -- 重构
-        map("<leader>lr", vim.lsp.buf.rename, "重命名变量")
-        map("<leader>la", vim.lsp.buf.code_action, "代码动作（修复建议）")
-
-        -- 诊断信息（错误/警告）
-        map("<leader>ld", vim.diagnostic.open_float, "查看当前行诊断详情")
-        map("[d", vim.diagnostic.goto_prev, "跳到上一个诊断")
-        map("]d", vim.diagnostic.goto_next, "跳到下一个诊断")
-
-        -- 格式化（如果 LSP 支持）
-        if client.server_capabilities.documentFormattingProvider then
-          map("<leader>lf", function() vim.lsp.buf.format({ async = true }) end, "格式化代码")
-        end
-      end
+      local keymaps = require("config.keymaps")
+      local on_attach = keymaps.lsp_on_attach
 
       -- ── 补全能力声明 ──────────────────────────────
       -- 告诉 LSP 服务器，Neovim 支持哪些补全特性

@@ -61,11 +61,7 @@ return {
         end,
       })
 
-      -- 快捷键：切换文件树显示/隐藏
-      vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>",
-        { noremap = true, silent = true, desc = "切换文件树" })
-      vim.keymap.set("n", "<leader>E", ":NvimTreeFindFile<CR>",
-        { noremap = true, silent = true, desc = "在文件树中定位当前文件" })
+      -- 快捷键已迁移到 keymaps.lua
     end,
   },
 
@@ -139,7 +135,6 @@ return {
           return vim.o.columns * 0.4
         end
       end,
-      open_mapping = [[<C-\>]],  -- Ctrl+\ 打开/关闭终端
       direction = "float",       -- 默认浮动终端（float/horizontal/vertical）
       float_opts = {
         border = "curved",       -- 浮动终端边框样式
@@ -156,12 +151,7 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
-    keys = {
-      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash 跳转" },
-      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter 选择" },
-      { "r",     mode = "o",               function() require("flash").remote() end,             desc = "Flash 远程操作" },
-      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,             desc = "切换 Flash 搜索" },
-    },
+
     -- 使用方式：按 s，然后输入要跳转的字符，会显示跳转标签，再按标签字母即跳过去
   },
 }

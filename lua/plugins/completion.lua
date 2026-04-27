@@ -27,20 +27,7 @@ return {
       require("luasnip.loaders.from_vscode").lazy_load()
       -- 支持从 VSCode 格式的 snippet 文件加载（friendly-snippets 就是这种格式）
 
-      -- Tab 键跳到下一个片段填写位置
-      vim.keymap.set({ "i", "s" }, "<Tab>", function()
-        if luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        else
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-        end
-      end, { silent = true })
-
-      vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
-        if luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        end
-      end, { silent = true })
+      -- LuaSnip 键映射已迁移到 keymaps.lua
     end,
   },
 
@@ -79,47 +66,7 @@ return {
         },
 
         -- ── 键位映射 ──────────────────────────────
-        mapping = cmp.mapping.preset.insert({
-          -- 在补全菜单中上下移动
-          ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-          ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-
-          -- 翻页（文档预览窗口）
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4), -- 文档向上滚动
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),  -- 文档向下滚动
-
-          -- 手动触发补全
-          ["<C-Space>"] = cmp.mapping.complete(),
-
-          -- 关闭补全菜单
-          ["<C-e>"] = cmp.mapping.abort(),
-
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump() -- 代码片段跳转
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-
-          -- Enter 确认选中项
-          ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace, -- 替换模式（替换光标后的文字）
-            select = true,                          -- false = 只有明确选中才确认（不自动选第一个）
-          }),
-        }),
+        mapping = require("config.keymaps").cmp_mappings(),
 
         -- ── 补全来源配置 ──────────────────────────
         -- 按优先级从高到低排列，排在前面的补全结果会靠前显示
