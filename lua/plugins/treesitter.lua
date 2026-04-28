@@ -6,5 +6,6 @@ return {
   opts = {
     ensure_installed = { "lua", "rust" },
     highlight = { enable = true },
+    fold = { enable = true },
   },
 }

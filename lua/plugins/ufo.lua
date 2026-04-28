@@ -2,7 +2,16 @@ return {
   "kevinhwang91/nvim-ufo",
   dependencies = { "kevinhwang91/promise-async" },
   config = function()
-    --使用 treesitter
+    vim.keymap.set('n', 'zc', 'zc', { noremap = true, silent = true })
+    vim.keymap.set('n', 'zo', 'zo', { noremap = true, silent = true })
+    vim.keymap.set('n', 'za', 'za', { noremap = true, silent = true })
+    vim.keymap.set('n', 'zC', 'zC', { noremap = true, silent = true })
+    vim.keymap.set('n', 'zO', 'zO', { noremap = true, silent = true })
+    vim.keymap.set('n', 'zA', 'zA', { noremap = true, silent = true })
+    vim.keymap.set('n', 'zv', 'zv', { noremap = true, silent = true })
+    vim.keymap.set('n', 'zx', 'zx', { noremap = true, silent = true })
+    vim.keymap.set('n', 'zX', 'zX', { noremap = true, silent = true })
+    -- ⭐ 关键：使用 treesitter
     vim.o.foldmethod = "expr"
     vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
@@ -16,7 +25,7 @@ return {
       end
     })
 
-    -- 局部折叠
+    -- 局部折叠（你已经有了）
     vim.keymap.set('n', 'zc', 'zc')
     vim.keymap.set('n', 'zo', 'zo')
     vim.keymap.set('n', 'za', 'za')
