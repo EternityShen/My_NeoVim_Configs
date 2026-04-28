@@ -46,7 +46,7 @@ keymap("n", "<C-d>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
 keymap("n", "<C-a>", "<cmd>vertical resize -5<cr>", { desc = "宽度减少" })
 
 -- 翻页居中
-keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true, desc = "向下翻页" })
+keymap("n", "<C-e>", "<C-d>zz", { noremap = true, silent = true, desc = "向下翻页" })
 keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true, desc = "向上翻页" })
 
 -- 清除搜索高亮
@@ -140,8 +140,8 @@ function M.cmp_mappings()
     ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.abort(),
+    -- ["<C-Space>"] = cmp.mapping.complete(),
+    -- ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then

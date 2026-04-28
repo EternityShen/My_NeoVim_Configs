@@ -68,10 +68,6 @@ return {
       { "<leader>wr", desc = "旋转窗口" },
       { "<leader>wm", desc = "最大化窗口" },
       { "<leader>w=", desc = "平衡窗口" },
-      { "<leader>wj", desc = "高度增加" },
-      { "<leader>wk", desc = "高度减少" },
-      { "<leader>wl", desc = "宽度增加" },
-      { "<leader>w,", desc = "宽度减少" },
       { "<leader>q", desc = "退出" },
       { "<leader>Q", desc = "全部退出" },
       { "<leader>e", desc = "文件树" },
@@ -90,8 +86,6 @@ return {
       { "<leader>fd", desc = "诊断信息" },
       { "<leader>f/", desc = "继续搜索" },
       { "<leader>g", desc = "搜索内容" },
-      { "<leader>v", desc = "垂直分割" },
-      { "<leader>h", desc = "水平分割" },
       { "<leader>b", group = "buffers操作" },
 
       -- Git
