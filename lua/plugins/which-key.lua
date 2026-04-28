@@ -1,123 +1,126 @@
 -- ─────────────────────────────────────────────
--- 6. 键位提示：which-key
+-- which-key 配置（60键优化版）
 -- ─────────────────────────────────────────────
--- 当你按下 leader 键后，弹出可用快捷键列表（防止忘记快捷键）
--- 修改 which-key 插件的配置
 return {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    config = function()
-      local wk = require("which-key")
-      wk.setup()
-      
-      -- 使用官方最新的配置方式
-      wk.add({
-        -- 基础键映射
-        { "<C-h>", desc = "跳转到左窗口" },
-        { "<C-j>", desc = "跳转到下窗口" },
-        { "<C-k>", desc = "跳转到上窗口" },
-        { "<C-l>", desc = "跳转到右窗口" },
+  "folke/which-key.nvim",
+  event = "VeryLazy",
 
-        -- LSP 跳转映射
-        { "gd", desc = "跳转到定义" },
-        { "gD", desc = "跳转到声明" },
-        { "gi", desc = "跳转到实现" },
-        { "gr", desc = "查看所有引用" },
-        { "gt", desc = "跳转到类型定义" },
-        { "K", desc = "悬浮文档（按两次进入）" },
+  config = function()
+    require("which-key").setup({
+      preset = "modern", -- 现代风格（重点！）
 
-        -- 诊断信息（错误/警告）
-        { "]d", desc = "跳到下一个诊断" },
-        { "[d", desc = "跳到上一个诊断" },
+      delay = 200,
 
-        -- Git hunk 跳转
-        { "]h", desc = "下一个 Hunk" },
-        { "[h", desc = "上一个 Hunk" },
+      expand = 1,
 
-        -- Flash 跳转
-        { "s", desc = "Flash 跳转" },
-        { "S", desc = "Flash Treesitter 选择" },
+      notify = false,
 
-        -- Git 命令
-        { "<leader>gs", desc = "暂存当前 Hunk" },
-        { "<leader>gr", desc = "撤销当前 Hunk" },
-        { "<leader>gS", desc = "暂存整个文件" },
-        { "<leader>gR", desc = "撤销整个文件" },
-        { "<leader>gu", desc = "取消暂存当前 Hunk" },
-        { "<leader>gp", desc = "预览 Hunk" },
-        { "<leader>gB", desc = "显示完整 Blame" },
-        { "<leader>gd", desc = "与 HEAD 对比" },
-        { "<leader>gD", desc = "与上一次提交对比" },
+      plugins = {
+        spelling = {
+          enabled = true,
+          suggestions = 20,
+        },
+      },
 
-        -- z开头的命令（折叠和拼写）
-        { "z", group = "折叠/拼写" },
-        { "zc", desc = "关闭当前折叠" },
-        { "zo", desc = "打开当前折叠" },
-        { "za", desc = "切换折叠" },
-        { "zm", desc = "创建折叠" },
-        { "zr", desc = "打开所有折叠" },
-        { "zx", desc = "关闭所有折叠" },
-        { "zv", desc = "显示当前行" },
-        { "zt", desc = "顶部显示当前行" },
-        { "zb", desc = "底部显示当前行" },
+      win = {
+        border = "rounded", -- 边框更柔和
+        padding = { 1, 3 }, -- 内边距
+        wo = {
+          winblend = 10,    -- 透明度（0-100）
+        },
+      },
 
-        -- Telescope 键映射
-        { "<leader>f", group = "查找 (Telescope)" },
-        { "<leader>ff", desc = "查找文件" },
-        { "<leader>fr", desc = "最近打开的文件" },
-        { "<leader>fb", desc = "查找已打开的 Buffer" },
-        { "<leader>fg", desc = "全局内容搜索 (grep)" },
-        { "<leader>fw", desc = "搜索光标下的单词" },
-        { "<leader>fh", desc = "搜索帮助文档" },
-        { "<leader>fk", desc = "搜索快捷键" },
-        { "<leader>fc", desc = "搜索命令" },
-        { "<leader>fd", desc = "搜索 LSP 诊断信息" },
-        { "<leader>fs", desc = "搜索文件符号" },
-        { "<leader>fS", desc = "搜索工作区符号" },
+      layout = {
+        width = { max = 60 },
+        spacing = 3,
+      },
+      icons = {
+        breadcrumb = "»",
+        separator = "➜",
+        group = "",
+      },
+      position = "center",
 
-        -- Git 键映射
-        { "<leader>g", group = "Git" },
-        { "<leader>gc", desc = "搜索 git commits" },
-        { "<leader>gb", desc = "搜索 git 分支" },
-        { "<leader>gg", desc = "打开 LazyGit" },
+      show_help = true,
+      show_keys = true,
+    })
+    local wk = require("which-key")
+    wk.setup()
 
-        -- LSP 键映射
-        { "<leader>l", group = "LSP" },
-        { "<leader>li", desc = "查看调用者" },
-        { "<leader>lr", desc = "重命名变量" },
-        { "<leader>la", desc = "代码动作（修复建议）" },
-        { "<leader>ld", desc = "查看当前行诊断详情" },
-        { "<leader>lf", desc = "格式化代码" },
+    wk.add({
+      -- LSP
+      { "gd", desc = "定义" },
+      { "gD", desc = "声明" },
+      { "gi", desc = "实现" },
+      { "gr", desc = "引用" },
+      { "K", desc = "悬浮文档" },
+      { "]d", desc = "下一诊断" },
+      { "[d", desc = "上一诊断" },
+      { "]h", desc = "下一hunk" },
+      { "[h", desc = "上一hunk" },
 
-        -- 终端和标签页
-        { "<leader>t", group = "终端 / Tab" },
-        { "<leader>tt", desc = "打开/关闭终端" },
-        { "<leader>tn", desc = "新建 Tab" },
-        { "<leader>tc", desc = "关闭 Tab" },
+      -- Leader 键分组
+      { "<leader>w", group = "窗口" },
+      { "<leader>wv", desc = "垂直分割" },
+      { "<leader>wh", desc = "水平分割" },
+      { "<leader>wc", desc = "关闭窗口" },
+      { "<leader>wo", desc = "关闭其他" },
+      { "<leader>wr", desc = "旋转窗口" },
+      { "<leader>wm", desc = "最大化窗口" },
+      { "<leader>w=", desc = "平衡窗口" },
+      { "<leader>wj", desc = "高度增加" },
+      { "<leader>wk", desc = "高度减少" },
+      { "<leader>wl", desc = "宽度增加" },
+      { "<leader>w,", desc = "宽度减少" },
+      { "<leader>q", desc = "退出" },
+      { "<leader>Q", desc = "全部退出" },
+      { "<leader>e", desc = "文件树" },
+      { "<leader>f", group = "搜索" },
+      { "<leader>ff", desc = "找文件" },
+      { "<leader>fb", desc = "找buffer" },
+      { "<leader>fr", desc = "最近文件" },
+      { "<leader>fg", desc = "全局搜索" },
+      { "<leader>fw", desc = "搜索词" },
+      { "<leader>fc", desc = "当前文件搜索" },
+      { "<leader>fs", desc = "文件符号" },
+      { "<leader>fS", desc = "工作区符号" },
+      { "<leader>fh", desc = "帮助文档" },
+      { "<leader>fk", desc = "快捷键" },
+      { "<leader>f:", desc = "命令" },
+      { "<leader>fd", desc = "诊断信息" },
+      { "<leader>f/", desc = "继续搜索" },
+      { "<leader>g", desc = "搜索内容" },
+      { "<leader>v", desc = "垂直分割" },
+      { "<leader>h", desc = "水平分割" },
+      { "<leader>b", group = "buffers操作" },
 
-        -- 文件树
-        { "<leader>e", desc = "切换文件树" },
-        { "<leader>E", desc = "在文件树中定位当前文件" },
+      -- Git
+      { "<leader>g", group = "Git" },
+      { "<leader>gg", desc = "LazyGit" },
+      { "<leader>gs", desc = "暂存hunk" },
+      { "<leader>gr", desc = "重置hunk" },
+      { "<leader>gp", desc = "预览hunk" },
 
-        -- 保存和退出
-        { "<leader>w", desc = "保存文件" },
-        { "<leader>q", desc = "退出" },
-        { "<leader>Q", desc = "全部保存退出" },
+      -- LSP 操作
+      { "<leader>c", group = "代码" },
+      { "<leader>rn", desc = "重命名" },
+      { "<leader>lf", desc = "格式化" },
 
-        -- 窗口操作
-        { "<leader>s", group = "窗口操作" },
-        { "<leader>sv", desc = "垂直分割窗口" },
-        { "<leader>sh", desc = "水平分割窗口" },
-        { "<leader>sq", desc = "关闭窗口" },
+      -- Rust
+      { "<leader>r", group = "Rust" },
+      { "<leader>rr", desc = "运行" },
+      { "<leader>rt", desc = "测试" },
+      { "<leader>rd", desc = "调试" },
+      { "<leader>re", desc = "解释错误" },
+      { "<leader>rc", desc = "Cargo.toml" },
 
-        -- 缓冲区操作
-        { "<leader>b", group = "缓冲区" },
-        { "<leader>bc", desc = "智能关闭buffer" },
-        { "<leader>bo", desc = "关闭其他buffer" },
-        { "<leader>bu", desc = "关闭左侧buffer" },
-        { "<leader>br", desc = "关闭右侧buffer" },
-        { "<leader>bh", desc = "向左移动buffer" },
-        { "<leader>bl", desc = "向右移动buffer" },
-      })
-    end,
-  }
+      -- 折叠(Ufo)
+      { "z", group = "代码折叠" },
+      { "zM", desc = "关闭所有折叠" },
+      { "zR", desc = "展开所有折叠" },
+      { "zc", desc = "关闭当前折叠" },
+      { "zo", desc = "展开当前折叠" },
+      { "za", desc = "切换折叠" },
+    })
+  end,
+}
