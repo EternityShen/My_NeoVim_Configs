@@ -195,4 +195,10 @@ keymap("n", "<leader>rd", ":RustLsp debuggables<CR>", { desc = "调试" })
 keymap("n", "<leader>re", ":RustLsp explainError<CR>", { desc = "解释错误" })
 keymap("n", "<leader>rc", ":RustLsp openCargo<CR>", { desc = "Cargo.toml" })
 
+--诊断查看
+-- 普通模式下按 <Leader>d 打开诊断
+vim.keymap.set("n", "<Leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
+-- 或打开全局诊断列表（跨文件）
+vim.keymap.set("n", "<Leader>D", "<cmd>Lspsaga diagnostic_list<CR>", { silent = true })
+
 return M
