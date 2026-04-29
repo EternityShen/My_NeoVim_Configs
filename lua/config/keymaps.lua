@@ -1,4 +1,4 @@
---=============================================================================
+--============================================================================
 -- keymaps.lua - 基础键位映射（60键优化版）
 -- =============================================================================
 
@@ -20,6 +20,7 @@ keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true, desc = "跳转�
 keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "跳转下窗口" })
 keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true, desc = "跳转上窗口" })
 keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true, desc = "跳转右窗口" })
+
 -- 插入模式快捷键
 keymap("i", "<C-h>", "<Left>", { noremap = true, silent = true, desc = "左移光标" })
 keymap("i", "<C-j>", "<Down>", { noremap = true, silent = true, desc = "下移光标" })
@@ -41,9 +42,9 @@ keymap("n", "<leader>co", "<cmd>only<cr>", { desc = "关闭其他" })
 keymap("n", "<leader>cr", "<cmd>wincmd r<cr>", { desc = "旋转窗口" })
 keymap("n", "<leader>cm", "<cmd>maximize<cr>", { desc = "最大化窗口" })
 keymap("n", "<leader>c=", "<cmd>wincmd =<cr>", { desc = "平衡窗口" })
-keymap("n", "<C-w>", "<cmd>resize +5<cr>", { desc = "高度增加" })
+keymap("n", "<C-d>", "<cmd>resize +5<cr>", { desc = "高度增加" })
 keymap("n", "<C-s>", "<cmd>resize -5<cr>", { desc = "高度减少" })
-keymap("n", "<C-d>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
+keymap("n", "<C-f>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
 keymap("n", "<C-a>", "<cmd>vertical resize -5<cr>", { desc = "宽度减少" })
 
 -- 翻页居中
@@ -201,82 +202,4 @@ keymap("n", "<leader>rc", ":RustLsp openCargo<CR>", { desc = "Cargo.toml" })
 vim.keymap.set("n", "<Leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "显示当前行诊断" }, { silent = true })
 -- 打开全局诊断列表（跨文件）
 vim.keymap.set("n", "<Leader>D", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "显示当前工做区诊断" }, { silent = true })
-
-
---不使用的键Unmap
--- 使用 noremap 将这些键映射到空操作，确保它们被禁用
-local disable_key = function(mode, lhs)
-  vim.keymap.set(mode, lhs, "<Nop>", { noremap = true, silent = true })
-end
-
--- 延迟到 VimEnter 后执行，确保所有插件都已加载
-vim.api.nvim_create_autocmd("VimEnter", {
-  once = true,
-  callback = function()
-    -- 普通模式下禁用的键
-    disable_key("n", "&")     -- 重复上次替换
-    disable_key("n", ",")     -- 反向查找
-    disable_key("n", "F")     -- 反向字符查找
-    disable_key("n", "H")     -- 跳转到屏幕顶部
-    disable_key("n", "L")     -- 跳转到屏幕底部
-    disable_key("n", "T")     -- 反向字符查找（不包含）
-    disable_key("n", "Y")     -- 复制到行尾
-    disable_key("n", "B")     -- 反向词移动（大词）
-    disable_key("n", "<C-B>") -- 向上翻页
-    disable_key("n", "<C-T>") -- 跳回标签页栈
-    disable_key("n", "<C-L>") -- 重绘屏幕
-    disable_key("n", "<C-Q>") -- 进入可视块模式
-    disable_key("n", ";")     -- 重复f/t查找
-    disable_key("n", "f")     -- 字符查找
-    disable_key("n", "t")     -- 字符查找（不包含）
-
-    -- 方括号命令 - buffer操作
-    disable_key("n", "[b") -- 上一个buffer
-    disable_key("n", "[B") -- 第一个buffer
-    disable_key("n", "]b") -- 下一个buffer
-    disable_key("n", "]B") -- 最后一个buffer
-
-    -- 方括号命令 - tab操作
-    disable_key("n", "[t") -- 上一个tab
-    disable_key("n", "[T") -- 第一个tab
-    disable_key("n", "]t") -- 下一个tab
-    disable_key("n", "]T") -- 最后一个tab
-
-    -- 方括号命令 - argument操作
-    disable_key("n", "[a") -- 上一个参数
-    disable_key("n", "[A") -- 第一个参数
-    disable_key("n", "]a") -- 下一个参数
-    disable_key("n", "]A") -- 最后一个参数
-
-    -- 方括号命令 - location list
-    disable_key("n", "[l") -- 上一个位置
-    disable_key("n", "[L") -- 第一个位置
-    disable_key("n", "]l") -- 下一个位置
-    disable_key("n", "]L") -- 最后一个位置
-
-    -- 方括号命令 - quickfix list
-    disable_key("n", "[q") -- 上一个quickfix项
-    disable_key("n", "[Q") -- 第一个quickfix项
-    disable_key("n", "]q") -- 下一个quickfix项
-    disable_key("n", "]Q") -- 最后一个quickfix项
-
-    -- 方括号命令 - 其他
-    disable_key("n", "]<Space>") -- 在下方添加空行
-    disable_key("n", "[<Space>") -- 在上方添加空行
-    disable_key("n", "[<C-T>]")  -- ptprevious
-    disable_key("n", "[<C-L>]")  -- lpfile
-    disable_key("n", "[<C-Q>]")  -- cpfile
-    disable_key("n", "]<C-T>]")  -- ptnext
-    disable_key("n", "]<C-L>]")  -- lnfile
-    disable_key("n", "]<C-Q>]")  -- cnfile
-
-    -- surrounding操作 (vim-surround)
-    disable_key("n", "cs")  -- 替换包围对
-    disable_key("n", "ds")  -- 删除包围对
-    disable_key("n", "yss") -- 行级添加包围对
-    disable_key("n", "ys")  -- 移动添加包围对
-    disable_key("n", "yS")  -- 移动添加包围对（换行）
-  end,
-})
-
 return M

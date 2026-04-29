@@ -3,7 +3,8 @@
 return {
   'mrcjkb/rustaceanvim',
   lazy = false,
-
-  init = function()
+  ft = { 'rust' },
+  configs = function()
+    tools.inlay_hints.auto = true
   end
 }

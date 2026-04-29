@@ -78,8 +78,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           -- 根据你的需求添加
-          "lua_ls",        -- Lua（写 Neovim 配置必备）
-          "rust_analyzer", -- Rust
+          "lua_ls", -- Lua（写 Neovim 配置必备）
 
         },
         automatic_installation = true, -- 自动安装上面列表中的服务器
