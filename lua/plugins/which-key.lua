@@ -88,7 +88,7 @@ return {
       { "<leader>gp", desc = "预览hunk" },
 
       -- LSP 操作
-      { "<leader>c", group = "代码" },
+      { "<leader>c", group = "窗口" },
       { "<leader>rn", desc = "重命名" },
       { "<leader>lf", desc = "格式化" },
 
