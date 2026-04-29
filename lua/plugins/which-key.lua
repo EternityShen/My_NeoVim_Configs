@@ -4,10 +4,11 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-
   config = function()
-    require("which-key").setup({
-      preset = "modern", -- 现代风格（重点！）
+    
+    local wk = require("which-key")
+    wk.setup({
+      preset = "modern", -- 现代风格
 
       delay = 200,
 
@@ -20,13 +21,24 @@ return {
           enabled = true,
           suggestions = 20,
         },
+        marks = false,
+        registers = false,
+        presets = {
+          operators = false,
+          motions = false,
+          text_objects = false,
+          windows = false,
+          nav = false,
+          z = true,
+          g = true,
+        },
       },
 
       win = {
         border = "rounded", -- 边框更柔和
         padding = { 1, 3 }, -- 内边距
         wo = {
-          winblend = 10,    -- 透明度（0-100）
+          winblend = 30,    -- 透明度（0-100）
         },
       },
 
@@ -43,9 +55,13 @@ return {
 
       show_help = true,
       show_keys = true,
+
+      -- 忽略这些键的显示
+      ignore_missing = true,
+      hidden = {
+        "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ ",
+      },
     })
-    local wk = require("which-key")
-    wk.setup()
 
     wk.add({
       -- LSP
@@ -61,31 +77,9 @@ return {
 
       -- Leader 键分组
       { "<leader>w", group = "窗口" },
-      { "<leader>wv", desc = "垂直分割" },
-      { "<leader>wh", desc = "水平分割" },
-      { "<leader>wc", desc = "关闭窗口" },
-      { "<leader>wo", desc = "关闭其他" },
-      { "<leader>wr", desc = "旋转窗口" },
-      { "<leader>wm", desc = "最大化窗口" },
-      { "<leader>w=", desc = "平衡窗口" },
-      { "<leader>q", desc = "退出" },
-      { "<leader>Q", desc = "全部退出" },
-      { "<leader>e", desc = "文件树" },
+
       { "<leader>f", group = "搜索" },
-      { "<leader>ff", desc = "找文件" },
-      { "<leader>fb", desc = "找buffer" },
-      { "<leader>fr", desc = "最近文件" },
-      { "<leader>fg", desc = "全局搜索" },
-      { "<leader>fw", desc = "搜索词" },
-      { "<leader>fc", desc = "当前文件搜索" },
-      { "<leader>fs", desc = "文件符号" },
-      { "<leader>fS", desc = "工作区符号" },
-      { "<leader>fh", desc = "帮助文档" },
-      { "<leader>fk", desc = "快捷键" },
-      { "<leader>f:", desc = "命令" },
-      { "<leader>fd", desc = "诊断信息" },
-      { "<leader>f/", desc = "继续搜索" },
-      { "<leader>g", desc = "搜索内容" },
+
       { "<leader>b", group = "buffers操作" },
 
       -- Git

@@ -52,10 +52,10 @@ return {
     event = "VeryLazy",              -- VeryLazy: 等其他插件加载完成后再加载（不影响启动速度）
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- 文件类型图标（需要 Nerd Font）
+      "catppuccin/nvim",           -- 颜色主题（需要加载后生效）
     },
     opts = {
       options = {
-        theme = "catppuccin",       -- 使用与主题匹配的配色
         component_separators = "|", -- 组件间的分隔符
         section_separators = "",    -- 区域间的分隔符（空字符串=无分隔图标）
         globalstatus = false,       -- 所有窗口共用一个状态栏（Neovim 0.7+ 支持
@@ -79,6 +79,9 @@ return {
         lualine_y = { "progress" }, -- 光标在文件中的百分比位置
         lualine_z = { "location" }, -- 光标行列号（行:列）
       },
+      function ()
+        return require('lualine.themes.catppuccin')
+      end
     },
   },
 
