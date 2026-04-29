@@ -5,7 +5,6 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   config = function()
-    
     local wk = require("which-key")
     wk.setup({
       preset = "modern", -- 现代风格
@@ -76,7 +75,6 @@ return {
       { "[h", desc = "上一hunk" },
 
       -- Leader 键分组
-      { "<leader>w", group = "窗口" },
 
       { "<leader>f", group = "搜索" },
 
