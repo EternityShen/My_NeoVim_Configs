@@ -74,6 +74,7 @@ keymap("v", "p", '"_dP', { noremap = true, silent = true, desc = "粘贴不覆�
 -- 终端模式快捷键
 -- ─────────────────────────────────────────────
 keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "退出终端" })
+keymap("n", "<leader>t", "<cmd>terminal<cr>")
 
 -- ─────────────────────────────────────────────
 -- Telescope 搜索
@@ -104,8 +105,6 @@ keymap("n", "<leader>f:", telescope_builtin("commands"), { desc = "命令" })
 keymap("n", "<leader>fd", telescope_builtin("diagnostics"), { desc = "诊断信息" })
 keymap("n", "<leader>f/", telescope_builtin("resume"), { desc = "继续搜索" })
 
--- 旧的快捷键保持不变（作为快捷入口）
-keymap("n", "<leader>g", telescope_builtin("live_grep"), { desc = "搜索内容" })
 
 -- ─────────────────────────────────────────────
 -- LSP
