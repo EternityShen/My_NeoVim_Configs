@@ -1,4 +1,4 @@
---============================================================================
+-- ============================================================================
 -- keymaps.lua - 基础键位映射（60键优化版）
 -- =============================================================================
 
@@ -202,4 +202,6 @@ keymap("n", "<leader>rc", ":RustLsp openCargo<CR>", { desc = "Cargo.toml" })
 vim.keymap.set("n", "<Leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "显示当前行诊断" }, { silent = true })
 -- 打开全局诊断列表（跨文件）
 vim.keymap.set("n", "<Leader>D", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "显示当前工做区诊断" }, { silent = true })
+
+
 return M

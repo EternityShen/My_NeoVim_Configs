@@ -52,7 +52,7 @@ return {
     event = "VeryLazy",              -- VeryLazy: 等其他插件加载完成后再加载（不影响启动速度）
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- 文件类型图标（需要 Nerd Font）
-      "catppuccin/nvim",           -- 颜色主题（需要加载后生效）
+      "catppuccin/nvim",             -- 颜色主题（需要加载后生效）
     },
     opts = {
       options = {
@@ -79,7 +79,7 @@ return {
         lualine_y = { "progress" }, -- 光标在文件中的百分比位置
         lualine_z = { "location" }, -- 光标行列号（行:列）
       },
-      function ()
+      function()
         return require('lualine.themes.catppuccin')
       end
     },
@@ -217,7 +217,7 @@ return {
     end,
   },
 
- 
+
 
   -- ─────────────────────────────────────────────
   -- 7. 启动界面：dashboard
@@ -243,7 +243,7 @@ return {
         center = { -- 快捷按钮列表
           { icon = "  ", key = "f", desc = "F-查找文件", action = "Telescope find_files" },
           { icon = "  ", key = "r", desc = "R-最近文件", action = "Telescope oldfiles" },
-          { icon = "  ", key = "g", desc = "G-全局搜索", action = "Telescope live_grep" },
+          { icon = "  ", key = "G", desc = "G-全局搜索", action = "Telescope live_grep" },
           { icon = "  ", key = "c", desc = "C-打开配置", action = "edit ~/.config/nvim/init.lua" },
           { icon = "  ", key = "l", desc = "L-插件管理", action = "Lazy" },
           { icon = "   ", key = "q", desc = "OvO-退出", action = "qa" },
