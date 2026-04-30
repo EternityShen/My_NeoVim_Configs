@@ -191,6 +191,7 @@ keymap({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = 
 -- ─────────────────────────────────────────────
 -- Rust 开发
 -- ─────────────────────────────────────────────
+keymap("n", "<leader>r", "<Nop>", { desc = "Rust" })
 keymap("n", "<leader>rr", ":RustLsp run<CR>", { desc = "运行" })
 keymap("n", "<leader>rt", ":RustLsp testables<CR>", { desc = "测试" })
 keymap("n", "<leader>rd", ":RustLsp debuggables<CR>", { desc = "调试" })
