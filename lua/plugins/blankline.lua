@@ -1,13 +1,33 @@
+-- =============================================================================
+-- blankline.lua - 缩进参考线插件配置
+-- =============================================================================
+-- 在代码缩进处显示垂直参考线，帮助对齐和识别代码块结构
+
 return {
+  -- Indent-blankline 插件仓库
   "lukas-reineke/indent-blankline.nvim",
+  
+  -- 非常懒加载，只在需要时加载
   event = "VeryLazy",
+  
+  -- 指定主模块名称
   main = "ibl",
+  
+  -- 插件配置函数
   config = function()
     local ibl = require("ibl")
 
+    -- 基础配置
     ibl.setup({
-      indent = { char = "│" },
-      scope = { enabled = true },
+      -- 缩进线字符设置
+      indent = { 
+        char = "│"  -- 使用竖线字符作为缩进参考线
+      },
+      
+      -- 启用作用域高亮（显示代码块范围）
+      scope = { 
+        enabled = true 
+      },
     })
 
     -- 启动界面检测
