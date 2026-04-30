@@ -194,4 +194,8 @@ vim.keymap.set("n", "<Leader>D", "<cmd>Lspsaga show_workspace_diagnostics<CR>", 
 
 keymap("n", "<leader>lr", ":RustLsp rename<CR>", { desc = "重命名全部" })
 
+keymap("n", "dd", '"_dd', { desc = "删除当前行" })
+keymap("v", "d", '"_d', { desc = "删除选中" })
+keymap("n", "xx", ':delete<CR>', { desc = "剪切当前行" })
+keymap("v", "x", ':delete<CR>', { desc = "剪切选中" })
 return M
