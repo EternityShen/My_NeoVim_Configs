@@ -6,19 +6,19 @@
 return {
   -- Neocodeium 插件仓库
   "monkoose/neocodeium",
-  
+
   -- 非常懒加载，只在需要时加载
   event = "VeryLazy",
-  
+
   -- 插件配置函数
   config = function()
     -- 加载 Neocodeium 模块
     local neocodeium = require("neocodeium")
-    
+
     -- 使用默认配置初始化
     neocodeium.setup()
-    
-    -- 设置 Tab 键接受 AI 补全建议
-    vim.keymap.set("i", "<Tab>", neocodeium.accept)
+
+    -- 接受 AI 补全建议
+    vim.keymap.set("i", "<A-w>", neocodeium.accept, { desc = "接受 AI 补全建议" })
   end,
 }
