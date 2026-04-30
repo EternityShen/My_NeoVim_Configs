@@ -81,7 +81,10 @@ return {
           "lua_ls", -- Lua（写 Neovim 配置必备）
 
         },
-        automatic_installation = true, -- 自动安装上面列表中的服务器
+        -- 自动安装上面列表中的服务器，但排除 rust_analyzer（由 rustaceanvim 处理）
+        automatic_installation = function(server_name)
+          return server_name ~= "rust_analyzer"
+        end,
       })
     end,
   },

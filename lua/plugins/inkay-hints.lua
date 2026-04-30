@@ -9,7 +9,6 @@ return {
 
   -- 在 LSP 附加到缓冲区时加载
   event = "LspAttach",
-
   -- 依赖项：LSP 配置插件
   dependencies = { "neovim/nvim-lspconfig" },
 

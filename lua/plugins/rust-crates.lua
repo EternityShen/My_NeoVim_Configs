@@ -6,10 +6,10 @@
 return {
   -- Rust Crates 插件仓库
   'saecki/crates.nvim',
-  
+
   -- 使用稳定版本标签
   tag = 'stable',
-  
+
   -- 插件配置函数
   config = function()
     -- 使用默认配置初始化 Rust Crates 插件
