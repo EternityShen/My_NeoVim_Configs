@@ -198,4 +198,9 @@ keymap("n", "dd", '"_dd', { desc = "删除当前行" })
 keymap("v", "d", '"_d', { desc = "删除选中" })
 keymap("n", "xx", ':delete<CR>', { desc = "剪切当前行" })
 keymap("v", "x", ':delete<CR>', { desc = "剪切选中" })
+
+vim.keymap.set('n', 'gD', '<CMD>Glance definitions<CR>', { desc = "查看定义" })
+vim.keymap.set('n', 'gR', '<CMD>Glance references<CR>', { desc = "查看引用" })
+vim.keymap.set('n', 'gY', '<CMD>Glance type_definitions<CR>', { desc = "查看类型定义" })
+vim.keymap.set('n', 'gM', '<CMD>Glance implementations<CR>', { desc = "查看实现" })
 return M
