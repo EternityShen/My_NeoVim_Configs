@@ -53,8 +53,9 @@ keymap("n", "<C-f>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
 keymap("n", "<C-a>", "<cmd>vertical resize -5<cr>", { desc = "宽度减少" })
 
 -- 翻页居中
-keymap("n", "<C-e>", "<C-d>zz", { noremap = true, silent = true, desc = "向下翻页" })
+keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true, desc = "向下翻页" })
 keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true, desc = "向上翻页" })
+
 
 -- 清除搜索高亮
 keymap("n", "<Esc>", ":nohl<Cr>", { noremap = true, silent = true, desc = "清除高亮" })
@@ -185,11 +186,11 @@ keymap("n", "<leader>rd", ":RustLsp debuggables<CR>", { desc = "调试" })
 keymap("n", "<leader>re", ":RustLsp explainError<CR>", { desc = "解释错误" })
 keymap("n", "<leader>rc", ":RustLsp openCargo<CR>", { desc = "Cargo.toml" })
 
---诊断查看
+--Debug
 -- 普通模式 打开诊断
-vim.keymap.set("n", "<Leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "显示当前行诊断" }, { silent = true })
+vim.keymap.set("n", "<Leader>dd", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "显示当前行诊断" }, { silent = true })
 -- 打开全局诊断列表（跨文件）
-vim.keymap.set("n", "<Leader>D", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "显示当前工做区诊断" }, { silent = true })
+vim.keymap.set("n", "<Leader>dD", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "显示当前工做区诊断" }, { silent = true })
 
 
 keymap("n", "<leader>lr", ":RustLsp rename<CR>", { desc = "重命名全部" })
@@ -203,4 +204,6 @@ vim.keymap.set('n', 'gD', '<CMD>Glance definitions<CR>', { desc = "查看定义"
 vim.keymap.set('n', 'gR', '<CMD>Glance references<CR>', { desc = "查看引用" })
 vim.keymap.set('n', 'gY', '<CMD>Glance type_definitions<CR>', { desc = "查看类型定义" })
 vim.keymap.set('n', 'gM', '<CMD>Glance implementations<CR>', { desc = "查看实现" })
+
+
 return M

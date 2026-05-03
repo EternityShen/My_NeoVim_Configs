@@ -80,6 +80,8 @@ return {
 
     wk.add({
 
+      -- Leader 键快捷键
+      { "<leader>d", group = "调试操作" },
       { "<leader>b", group = "buffers操作" },
       { "<leader>l", group = "LSP" },
       -- Git
@@ -96,6 +98,11 @@ return {
       { "zc", desc = "关闭当前折叠" },
       { "zo", desc = "展开当前折叠" },
       { "za", desc = "切换折叠" },
+
+      { "ze", desc = "向左翻动窗口" },
+      { "zs", desc = "向右翻动窗口" }
+
+
     })
   end,
 }
