@@ -3,10 +3,10 @@
 -- =============================================================================
 -- 提供一组简洁的图标，用于各种 UI 元素和状态指示
 
-return { 
+return {
   -- Mini Icons 插件仓库
-  "echasnovski/mini.icons", 
-  
+  "echasnovski/mini.icons",
+
   -- 不使用特定版本，总是获取最新版本
-  version = false 
+  version = false
 }

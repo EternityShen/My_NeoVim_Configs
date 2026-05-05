@@ -117,7 +117,7 @@ ShenEternity的nvim配置
 | 模式 | Key | 作用 |
 |-----|-----|------|
 | N | `<C-h/j/k/l>` | 窗口跳转（左/下/上/右） |
-| N | `<C-d>` | 向下翻页并居中 |
+| N | `<C-c>` | 向下翻页并居中 |
 | N | `<C-u>` | 向上翻页并居中 |
 | N | `<Esc>` | 清除搜索高亮 |
 | N | `<A-j>` | 下移当前行 |
@@ -234,6 +234,7 @@ ShenEternity的nvim配置
 | N | `<leader>rd` | 调试 |
 | N | `<leader>re` | 解释错误 |
 | N | `<leader>rc` | 打开 Cargo.toml |
+| N | `<leader>rs` | 重启RustAnalyzer |
 | N | `<leader>lr` | 重命名全部 |
 
 ### 诊断查看
