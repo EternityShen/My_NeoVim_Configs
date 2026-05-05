@@ -1,6 +1,45 @@
 # My_NeoVim_Configs
 ShenEternity的nvim配置
 
+## 安装
+
+### 依赖要求
+- **Neovim** >= 0.9.0
+- **Git**
+- **Nerd Font** (推荐 JetBrainsMono Nerd Font)
+
+### 安装命令
+
+#### Linux / macOS
+```bash
+# 备份现有配置（可选）
+mv ~/.config/nvim ~/.config/nvim.bak
+
+# 克隆仓库
+git clone https://github.com/ShenEternity/My_NeoVim_Configs.git ~/.config/nvim
+
+# 启动 Neovim，插件会自动安装
+nvim
+```
+
+#### Windows (PowerShell)
+```powershell
+# 备份现有配置（可选）
+Move-Item -Path $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak -Force -ErrorAction SilentlyContinue
+
+# 克隆仓库
+git clone https://github.com/ShenEternity/My_NeoVim_Configs.git $env:LOCALAPPDATA\nvim
+
+# 启动 Neovim，插件会自动安装
+nvim
+```
+
+### 手动安装插件
+首次启动后，若插件未自动安装，可手动执行：
+```vim
+:Lazy sync
+```
+
 ## 插件列表
 
 ### 插件管理器
