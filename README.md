@@ -40,6 +40,33 @@ nvim
 :Lazy sync
 ```
 
+### 彻底删除配置
+如需完全删除此配置及所有插件：
+
+#### Linux / macOS
+```bash
+# 删除配置目录
+rm -rf ~/.config/nvim
+
+# 删除插件目录（lazy.nvim 安装位置）
+rm -rf ~/.local/share/nvim/lazy
+
+# 删除 Neovim 缓存（可选）
+rm -rf ~/.cache/nvim
+```
+
+#### Windows (PowerShell)
+```powershell
+# 删除配置目录
+Remove-Item -Path $env:LOCALAPPDATA\nvim -Recurse -Force -ErrorAction SilentlyContinue
+
+# 删除插件目录（lazy.nvim 安装位置）
+Remove-Item -Path $env:LOCALAPPDATA\nvim-data\lazy -Recurse -Force -ErrorAction SilentlyContinue
+
+# 删除 Neovim 缓存（可选）
+Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction SilentlyContinue
+```
+
 ## 插件列表
 
 ### 插件管理器
