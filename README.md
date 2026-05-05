@@ -273,7 +273,7 @@ nvim
 | N | `<leader>rd` | 调试 |
 | N | `<leader>re` | 解释错误 |
 | N | `<leader>rc` | 打开 Cargo.toml |
-| N | `<leader>rs` | 重启RustAnalyzer |
+| N | `<leader>rR` | 重启RustAnalyzer |
 | N | `<leader>lr` | 重命名全部 |
 
 ### 诊断查看

@@ -185,7 +185,7 @@ keymap("n", "<leader>rt", ":RustLsp testables<CR>", { desc = "测试" })
 keymap("n", "<leader>rd", ":RustLsp debuggables<CR>", { desc = "调试" })
 keymap("n", "<leader>re", ":RustLsp explainError<CR>", { desc = "解释错误" })
 keymap("n", "<leader>rc", ":RustLsp openCargo<CR>", { desc = "Cargo.toml" })
-keymap("n", "<leader>rs", ":RustAnalyzer restart<CR>", { desc = "重启Rust-Analyzer" })
+keymap("n", "<leader>rR", ":RustAnalyzer restart<CR>", { desc = "重启Rust-Analyzer" })
 
 --Debug
 -- 普通模式 打开诊断
