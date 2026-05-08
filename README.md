@@ -16,7 +16,7 @@ ShenEternity的nvim配置
 mv ~/.config/nvim ~/.config/nvim.bak
 
 # 克隆仓库
-git clone https://github.com/ShenEternity/My_NeoVim_Configs.git ~/.config/nvim
+git clone https://github.com/EternityShen/My_NeoVim_Configs.git ~/.config/nvim
 
 # 启动 Neovim，插件会自动安装
 nvim
@@ -28,7 +28,7 @@ nvim
 Move-Item -Path $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak -Force -ErrorAction SilentlyContinue
 
 # 克隆仓库
-git clone https://github.com/ShenEternity/My_NeoVim_Configs.git $env:LOCALAPPDATA\nvim
+git clone https://github.com/EternityShen/My_NeoVim_Configs.git $env:LOCALAPPDATA\nvim
 
 # 启动 Neovim，插件会自动安装
 nvim
