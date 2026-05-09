@@ -49,7 +49,7 @@ return {
   -- 底部状态栏，显示模式、文件名、git 分支、LSP 错误等信息
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",              -- VeryLazy: 等其他插件加载完成后再加载（不影响启动速度）
+    event = "VimEnter",
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- 文件类型图标（需要 Nerd Font）
       "catppuccin/nvim",             -- 颜色主题（需要加载后生效）
@@ -58,15 +58,14 @@ return {
       options = {
         component_separators = "|", -- 组件间的分隔符
         section_separators = "",    -- 区域间的分隔符（空字符串=无分隔图标）
-        globalstatus = false,       -- 所有窗口共用一个状态栏（Neovim 0.7+ 支持
+        globalstatus = true,        -- 所有窗口共用一个状态栏（Neovim 0.7+ 支持
 
       },
       sections = {
         -- 状态栏左侧内容（从左到右）
         lualine_a = { "mode" }, -- 当前模式（NORMAL/INSERT/VISUAL 等）
-        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_b = { "branch", "diagnostics" },
         -- branch: git 分支名
-        -- diff: 文件修改统计（+新增 ~修改 -删除）
         -- diagnostics: LSP 错误/警告数量
         lualine_c = { { "filename", path = 1 } },
         -- path=1 显示相对路径（比只显示文件名更清楚）
@@ -79,9 +78,6 @@ return {
         lualine_y = { "progress" }, -- 光标在文件中的百分比位置
         lualine_z = { "location" }, -- 光标行列号（行:列）
       },
-      function()
-        return require('lualine.themes.catppuccin')
-      end
     },
   },
 

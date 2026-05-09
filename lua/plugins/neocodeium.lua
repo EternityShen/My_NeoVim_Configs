@@ -6,6 +6,7 @@
 return {
   -- Neocodeium 插件仓库
   "monkoose/neocodeium",
+  enabled = false,
 
   -- 非常懒加载，只在需要时加载
   event = "VeryLazy",

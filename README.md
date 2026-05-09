@@ -119,6 +119,7 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | `cmp-cmdline` | 命令行补全 |
 | `lspkind.nvim` | 补全菜单图标 |
 | `neocodeium` | AI 补全 |
+| `avante.nvim` | AI 补全 | 
 
 ### LSP 与诊断
 

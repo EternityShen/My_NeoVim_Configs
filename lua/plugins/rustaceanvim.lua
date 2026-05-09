@@ -7,7 +7,6 @@
 
 return {
   "mrcjkb/rustaceanvim",
-  version = "^4",
   ft = { "rust" },
   dependencies = {
     "neovim/nvim-lspconfig",
@@ -19,6 +18,7 @@ return {
       -- 禁用自动设置，由 rustaceanvim 完全控制
       standalone = true,
     },
+
   },
   config = function(_, opts)
     vim.g.rustaceanvim = opts
