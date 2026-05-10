@@ -26,11 +26,12 @@ keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "跳转�
 keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true, desc = "跳转上窗口" })
 keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true, desc = "跳转右窗口" })
 
--- 插入模式快捷键
-keymap("i", "<C-h>", "<Left>", { noremap = true, silent = true, desc = "左移光标" })
-keymap("i", "<C-j>", "<Down>", { noremap = true, silent = true, desc = "下移光标" })
-keymap("i", "<C-k>", "<Up>", { noremap = true, silent = true, desc = "上移光标" })
-keymap("i", "<C-l>", "<Right>", { noremap = true, silent = true, desc = "右移光标" })
+-- 在插入模式下，跳转窗口
+-- keymap("i", "<C-h>", "<C-w>h", { noremap = true, silent = true, desc = "跳转左窗口" })
+-- keymap("i", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "跳转下窗口" })
+-- keymap("i", "<C-k>", "<C-w>k", { noremap = true, silent = true, desc = "跳转上窗口" })
+-- keymap("i", "<C-l>", "<C-w>l", { noremap = true, silent = true, desc = "跳转右窗口" })
+
 
 -- 快速退出
 keymap("n", "<leader>q", ":q<CR>", { noremap = true, silent = true, desc = "退出" })
@@ -47,10 +48,10 @@ keymap("n", "<leader>co", "<cmd>only<cr>", { desc = "关闭其他" })
 keymap("n", "<leader>cr", "<cmd>wincmd r<cr>", { desc = "旋转窗口" })
 keymap("n", "<leader>cm", "<cmd>maximize<cr>", { desc = "最大化窗口" })
 keymap("n", "<leader>c=", "<cmd>wincmd =<cr>", { desc = "平衡窗口" })
-keymap("n", "<C-d>", "<cmd>resize +5<cr>", { desc = "高度增加" })
-keymap("n", "<C-s>", "<cmd>resize -5<cr>", { desc = "高度减少" })
-keymap("n", "<C-f>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
-keymap("n", "<C-a>", "<cmd>vertical resize -5<cr>", { desc = "宽度减少" })
+keymap("n", "<A-j>", "<cmd>resize +5<cr>", { desc = "高度增加" })
+keymap("n", "<A-s>", "<cmd>resize -5<cr>", { desc = "高度减少" })
+keymap("n", "<A-w>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
+keymap("n", "<A-a>", "<cmd>vertical resize -5<cr>", { desc = "宽度减少" })
 
 -- 翻页居中
 keymap("n", "<C-c>", "<C-d>zz", { noremap = true, silent = true, desc = "向下翻页" })
@@ -206,6 +207,8 @@ vim.keymap.set('n', 'gD', '<CMD>Glance definitions<CR>', { desc = "查看定义"
 vim.keymap.set('n', 'gR', '<CMD>Glance references<CR>', { desc = "查看引用" })
 vim.keymap.set('n', 'gY', '<CMD>Glance type_definitions<CR>', { desc = "查看类型定义" })
 vim.keymap.set('n', 'gM', '<CMD>Glance implementations<CR>', { desc = "查看实现" })
+
+vim.keymap.set({ "n", "v" }, "<leader>dq", "<cmd>Lspsaga code_action<CR>", { desc = "代码修复" })
 
 
 return M

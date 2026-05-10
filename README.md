@@ -85,6 +85,7 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | `nvim-notify` | 通知美化 |
 | `dashboard-nvim` | 启动欢迎界面 |
 | `noice.nvim` | 命令行美化 |
+| `mini.icons` | 图标支持 |
 
 ### 编辑器增强
 
@@ -103,8 +104,8 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | 插件 | 说明 |
 |------|------|
 | `nvim-treesitter` | 语法解析器 |
-| `blankline.nvim` | 缩进线 |
-| `rainbow` | 彩虹括号 |
+| `indent-blankline.nvim` | 缩进线（彩虹缩进） |
+| `rainbow-delimiters.nvim` | 彩虹括号 |
 
 ### 自动补全
 
@@ -118,8 +119,9 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | `cmp-path` | 文件路径补全 |
 | `cmp-cmdline` | 命令行补全 |
 | `lspkind.nvim` | 补全菜单图标 |
-| `neocodeium` | AI 补全 |
-| `avante.nvim` | AI 补全 | 
+| `neocodeium` | AI 补全（已禁用） |
+| `avante.nvim` | AI 补全（已禁用） |
+| `llama.vim` | llama.cpp 行内补全 |
 
 ### LSP 与诊断
 
@@ -130,6 +132,7 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | `nvim-lspconfig` | LSP 服务器配置 |
 | `lspsaga.nvim` | LSP UI 增强 |
 | `glance.nvim` | 定义/引用查看 |
+| `inlay-hints.nvim` | 行内类型提示 |
 
 ### 搜索
 
@@ -150,14 +153,13 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | 插件 | 说明 |
 |------|------|
 | `rustaceanvim` | Rust LSP 集成 |
-| `rust-crates` | Cargo 依赖管理 |
+| `crates.nvim` | Cargo 依赖管理 |
 
 ### 代码格式化
 
 | 插件 | 说明 |
 |------|------|
-| `formatting` | 代码格式化 |
-| `autopirs` | 自动格式化 |
+| `conform.nvim` | 代码格式化（保存时自动格式化） |
 
 ### 调试
 
@@ -173,9 +175,8 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | 插件 | 说明 |
 |------|------|
 | `which-key.nvim` | 快捷键提示 |
-| `ufo.nvim` | 代码折叠 |
-| `minicon` | 图标支持 |
-| `inkay-hints` | 内联提示 |
+| `nvim-ufo` | 代码折叠 |
+| `inlay-hints.nvim` | 内联类型提示 |
 
 ## 快捷键映射
 
@@ -205,16 +206,15 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | N | `<leader>cr` | 旋转窗口 |
 | N | `<leader>cm` | 最大化窗口 |
 | N | `<leader>c=` | 平衡窗口 |
-| N | `<C-d>` | 高度增加 |
-| N | `<C-s>` | 高度减少 |
-| N | `<C-f>` | 宽度增加 |
-| N | `<C-a>` | 宽度减少 |
+| N | `<A-j>` | 高度增加 |
+| N | `<A-s>` | 高度减少 |
+| N | `<A-w>` | 宽度增加 |
+| N | `<A-a>` | 宽度减少 |
 
 ### 插入模式 (Insert Mode)
 
 | 模式 | Key | 作用 |
 |-----|-----|------|
-| I | `<C-h/j/k/l>` | 光标移动（左/下/上/右） |
 | I | `jj` | 退出插入模式 |
 
 ### 可视模式 (Visual Mode)
@@ -232,7 +232,6 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | 模式 | Key | 作用 |
 |-----|-----|------|
 | T | `<Esc>` | 退出终端模式 |
-| N | `<leader>t` | 打开终端 |
 | N | `<C-\>` | 切换终端 |
 
 ### Telescope 搜索
@@ -258,24 +257,20 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | 模式 | Key | 作用 |
 |-----|-----|------|
 | N | `gd` | 跳转到定义 |
-| N | `gD` | 跳转到声明 |
+| N | `gD` | 查看定义（Glance） |
 | N | `gi` | 跳转到实现 |
 | N | `gr` | 查看引用 |
+| N | `gR` | 查看引用（Glance） |
+| N | `gY` | 查看类型定义（Glance） |
+| N | `gM` | 查看实现（Glance） |
 | N | `K` | 悬浮文档 |
 | N | `<leader>ca` | 代码动作 |
 | N | `<leader>rn` | 重命名 |
+| N | `<leader>lr` | 重命名全部（Lspsaga） |
 | N | `<leader>lf` | 格式化 |
 | N | `[d` | 上一诊断 |
 | N | `]d` | 下一诊断 |
-
-### Glance
-
-| 模式 | Key | 作用 |
-|-----|-----|------|
-| N | `gD` | 查看定义 |
-| N | `gR` | 查看引用 |
-| N | `gY` | 查看类型定义 |
-| N | `gM` | 查看实现 |
+| N | `<leader>dq` | 代码修复（Lspsaga） |
 
 ### Git
 
@@ -290,6 +285,7 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | 模式 | Key | 作用 |
 |-----|-----|------|
 | N | `<leader>e` | 切换文件树 |
+| N | `<C-\>` | 切换终端 |
 | N/X/O | `s` | Flash 跳转 |
 
 ### Rust 开发
@@ -302,7 +298,6 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | N | `<leader>re` | 解释错误 |
 | N | `<leader>rc` | 打开 Cargo.toml |
 | N | `<leader>rR` | 重启RustAnalyzer |
-| N | `<leader>lr` | 重命名全部 |
 
 ### 诊断查看
 
@@ -320,6 +315,19 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | N | `xx` | 剪切当前行 |
 | V | `x` | 剪切选中内容 |
 
+### Buffer 操作
+
+| 模式 | Key | 作用 |
+|-----|-----|------|
+| N | `<S-h>` | 上一个buffer |
+| N | `<S-l>` | 下一个buffer |
+| N | `<leader>bc` | 智能关闭buffer |
+| N | `<leader>bo` | 关闭其他buffer |
+| N | `<leader>bl` | 关闭左侧buffer |
+| N | `<leader>br` | 关闭右侧buffer |
+| N | `<leader>bh` | 向左移动buffer |
+| N | `<leader>bl` | 向右移动buffer |
+
 ### 调试 (Debug)
 
 | 模式 | Key | 作用 |
@@ -328,7 +336,55 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | N | `<F10>` | 单步跳过 |
 | N | `<F11>` | 单步进入 |
 | N | `<F12>` | 单步退出 |
-| N | `<leader>b` | 切换断点 |
-| N | `<leader>B` | 设置条件断点 |
+| N | `<leader>dk` | 切换断点 |
+| N | `<leader>dK` | 设置条件断点 |
 | N | `<leader>dr` | 打开 REPL |
 | N | `<leader>du` | 切换调试 UI |
+
+### 代码折叠
+
+| 模式 | Key | 作用 |
+|-----|-----|------|
+| N | `zc` | 关闭当前折叠 |
+| N | `zo` | 打开当前折叠 |
+| N | `za` | 切换当前折叠 |
+| N | `zM` | 关闭所有折叠 |
+| N | `zR` | 打开所有折叠 |
+
+### llama.vim AI 补全
+
+| 模式 | Key | 作用 |
+|-----|-----|------|
+| I | `<A-w>` | 接受完整补全 |
+| I | `<A-]>` | 接受一个词 |
+| I | `<A-\>` | 手动触发补全 |
+| I | `<Esc>` | 取消补全 |
+
+## 特性
+
+### AI 代码补全
+- 支持 llama.cpp 本地模型（llama.vim）
+- 支持 Neocodeium（已禁用）
+- 支持 Avante.nvim（已禁用）
+
+### Rust 开发支持
+- rustaceanvim 完整 Rust LSP 集成
+- crates.nvim Cargo 依赖管理
+- 内置运行、测试、调试快捷键
+
+### 代码格式化
+- conform.nvim 自动格式化
+- 保存时自动格式化
+- 支持多种语言（Lua、Python、JavaScript、TypeScript、Rust、Go等）
+
+### 代码折叠
+- nvim-ufo 智能代码折叠
+- 基于 Treesitter 的语法折叠
+- 支持全局和局部折叠操作
+
+### 界面美化
+- Catppuccin mocha 主题
+- Bufferline 标签栏
+- Lualine 状态栏
+- Noice 命令行美化
+- Dashboard 启动界面

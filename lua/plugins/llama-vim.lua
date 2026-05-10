@@ -6,7 +6,7 @@
 return {
   "ggml-org/llama.vim",
   version = false,
-  enabled = false,
+  enabled = true,
   -- 这个插件是 VimL 写的，不需要 build
   init = function()
     -- ── 服务器地址 ────────────────────────────────────────────────────────
@@ -42,7 +42,6 @@ return {
       -- leader+]   接受一个词
       -- leader+llf 手动触发补全
       keymap_fim_accept_full = "<A-w>",
-      keymap_fim_accept_line = "<S-W>",
       keymap_fim_accept_word = "<A-]>",  -- Alt+] 接受一个词
       keymap_fim_trigger     = "<A-\\>", -- Alt+\ 手动触发
       keymap_fim_cancel      = "<Esc>",  -- Esc 取消
