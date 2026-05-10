@@ -123,11 +123,6 @@ function M.lsp_on_attach(client, bufnr)
     vim.keymap.set("n", keys, func,
       { buffer = bufnr, noremap = true, silent = true, desc = "LSP: " .. desc })
   end
-
-  map("gd", vim.lsp.buf.definition, "定义")
-  map("gD", vim.lsp.buf.declaration, "声明")
-  map("gi", vim.lsp.buf.implementation, "实现")
-  map("gr", require("telescope.builtin").lsp_references, "引用")
   map("K", vim.lsp.buf.hover, "悬浮文档")
   map("<leader>ca", vim.lsp.buf.code_action, "代码动作")
   map("<leader>rn", vim.lsp.buf.rename, "重命名")
@@ -203,7 +198,8 @@ keymap("v", "d", '"_d', { desc = "删除选中" })
 keymap("n", "xx", ':delete<CR>', { desc = "剪切当前行" })
 keymap("v", "x", ':delete<CR>', { desc = "剪切选中" })
 
-vim.keymap.set('n', 'gD', '<CMD>Glance definitions<CR>', { desc = "查看定义" })
+vim.keymap.set('n', 'gD', '<CMD>Lspsaga goto_definition<CR>', { desc = "跳转到定义" })
+vim.keymap.set('n', 'gd', '<CMD>Glance definitions<CR>', { desc = "查看定义" })
 vim.keymap.set('n', 'gR', '<CMD>Glance references<CR>', { desc = "查看引用" })
 vim.keymap.set('n', 'gY', '<CMD>Glance type_definitions<CR>', { desc = "查看类型定义" })
 vim.keymap.set('n', 'gM', '<CMD>Glance implementations<CR>', { desc = "查看实现" })

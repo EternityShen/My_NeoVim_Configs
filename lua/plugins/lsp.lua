@@ -88,20 +88,4 @@ return {
       })
     end,
   },
-
-  -- ─────────────────────────────────────────────
-  -- 3. 更好的 LSP 提示 UI
-  -- ─────────────────────────────────────────────
-  -- {
-  --   "nvimdev/lspsaga.nvim",
-  --   event = "LspAttach",  -- LSP 连接到 buffer 时才加载
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "nvim-tree/nvim-web-devicons",
-  --   },
-  --   opts = {
-  --     ui = { border = "rounded" },
-  --     lightbulb = { enable = false },  -- 关闭灯泡图标（避免闪烁）
-  --   },
-  -- },
 }

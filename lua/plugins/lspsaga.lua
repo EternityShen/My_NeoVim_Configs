@@ -7,19 +7,13 @@
 return {
   -- Lspsaga 插件仓库
   "nvimdev/lspsaga.nvim",
-  
-  -- 插件配置函数
-  config = function()
-    -- 使用默认配置初始化 Lspsaga
-    require("lspsaga").setup({})
-  end,
-  
+
   -- 依赖项
   dependencies = {
     -- 文件类型图标支持
     { "nvim-tree/nvim-web-devicons" },
   },
-  
+
   -- 插件选项
   opts = {
     -- 禁用代码灯泡图标（避免闪烁）
