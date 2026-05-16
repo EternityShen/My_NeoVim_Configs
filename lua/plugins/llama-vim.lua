@@ -6,7 +6,7 @@
 return {
   "ggml-org/llama.vim",
   version = false,
-  enabled = true,
+  enabled = false,
   -- 这个插件是 VimL 写的，不需要 build
   init = function()
     -- ── 服务器地址 ────────────────────────────────────────────────────────
