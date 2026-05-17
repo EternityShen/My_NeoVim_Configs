@@ -240,7 +240,6 @@ return {
           { icon = "  ", key = "f", desc = "F-查找文件", action = "Telescope find_files" },
           { icon = "  ", key = "r", desc = "R-最近文件", action = "Telescope oldfiles" },
           { icon = "  ", key = "G", desc = "G-全局搜索", action = "Telescope live_grep" },
-          { icon = "  ", key = "c", desc = "C-打开配置", action = "edit ~/.config/nvim/init.lua" },
           { icon = "  ", key = "l", desc = "L-插件管理", action = "Lazy" },
           { icon = "   ", key = "q", desc = "OvO-退出", action = "qa" },
         },

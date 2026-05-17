@@ -48,7 +48,6 @@ keymap("n", "<leader>co", "<cmd>only<cr>", { desc = "关闭其他" })
 keymap("n", "<leader>cr", "<cmd>wincmd r<cr>", { desc = "旋转窗口" })
 keymap("n", "<leader>cm", "<cmd>maximize<cr>", { desc = "最大化窗口" })
 keymap("n", "<leader>c=", "<cmd>wincmd =<cr>", { desc = "平衡窗口" })
-keymap("n", "<A-j>", "<cmd>resize +5<cr>", { desc = "高度增加" })
 keymap("n", "<A-s>", "<cmd>resize -5<cr>", { desc = "高度减少" })
 keymap("n", "<A-w>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
 keymap("n", "<A-a>", "<cmd>vertical resize -5<cr>", { desc = "宽度减少" })
@@ -187,7 +186,7 @@ keymap("n", "<leader>rR", ":RustAnalyzer restart<CR>", { desc = "重启Rust-Anal
 -- 普通模式 打开诊断
 vim.keymap.set("n", "<Leader>dd", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "显示当前行诊断" }, { silent = true })
 -- 打开全局诊断列表（跨文件）
-vim.keymap.set("n", "<Leader>dD", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "显示当前工做区诊断" },
+vim.keymap.set("n", "<Leader>dD", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "显示当前工作区诊断" },
   { silent = true })
 
 

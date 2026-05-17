@@ -15,6 +15,13 @@ return {
       -- 高对比
       "ellisonleao/gruvbox.nvim",
       "olimorris/onedarkpro.nvim",
+
+      --粉色
+      "rose-pine/neovim",
+      "avoonix/pink-as-fox.nvim",
+      "sponkurtus2/angelic.nvim",
+      "daltonmenezes/aura-theme",
+      "uhs-robert/oasis.nvim",
       activity = {
         enabled = true,
       },

@@ -176,7 +176,7 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 |------|------|
 | `which-key.nvim` | 快捷键提示 |
 | `nvim-ufo` | 代码折叠 |
-| `inlay-hints.nvim` | 内联类型提示 |
+| `themify.nvim` | 主题切换器 |
 
 ## 快捷键映射
 
@@ -206,7 +206,6 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | N | `<leader>cr` | 旋转窗口 |
 | N | `<leader>cm` | 最大化窗口 |
 | N | `<leader>c=` | 平衡窗口 |
-| N | `<A-j>` | 高度增加 |
 | N | `<A-s>` | 高度减少 |
 | N | `<A-w>` | 宽度增加 |
 | N | `<A-a>` | 宽度减少 |
@@ -233,6 +232,7 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 |-----|-----|------|
 | T | `<Esc>` | 退出终端模式 |
 | N | `<C-\>` | 切换终端 |
+| N | `<leader>t` | 打开终端 |
 
 ### Telescope 搜索
 
@@ -256,11 +256,10 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 
 | 模式 | Key | 作用 |
 |-----|-----|------|
-| N | `gd` | 跳转到定义 |
-| N | `gD` | 查看定义（Glance） |
+| N | `gd` | 查看定义（Glance） |
+| N | `gD` | 跳转到定义（Lspsaga） |
 | N | `gi` | 跳转到实现 |
-| N | `gr` | 查看引用 |
-| N | `gR` | 查看引用（Glance） |
+| N | `gr` | 查看引用（Glance） |
 | N | `gY` | 查看类型定义（Glance） |
 | N | `gM` | 查看实现（Glance） |
 | N | `K` | 悬浮文档 |
@@ -326,7 +325,7 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 | N | `<leader>bl` | 关闭左侧buffer |
 | N | `<leader>br` | 关闭右侧buffer |
 | N | `<leader>bh` | 向左移动buffer |
-| N | `<leader>bl` | 向右移动buffer |
+| N | `<leader>bm` | 向右移动buffer |
 
 ### 调试 (Debug)
 
@@ -363,9 +362,9 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction Sile
 ## 特性
 
 ### AI 代码补全
-- 支持 llama.cpp 本地模型（llama.vim）
-- 支持 Neocodeium（已禁用）
-- 支持 Avante.nvim（已禁用）
+- 支持 llama.cpp 本地模型（llama.vim，默认禁用）
+- 支持 Neocodeium（默认禁用）
+- 支持 Avante.nvim（默认禁用）
 
 ### Rust 开发支持
 - rustaceanvim 完整 Rust LSP 集成
