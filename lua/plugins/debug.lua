@@ -1,4 +1,5 @@
 return {
+  -- nvim-dap: 调试适配器协议插件
   {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -15,7 +16,6 @@ return {
         opts = {},
       },
 
-      -- 自动配置 adapter
       {
         "jay-babu/mason-nvim-dap.nvim",
         dependencies = { "williamboman/mason.nvim" },
@@ -35,9 +35,6 @@ return {
       dapui.setup()
       pb.setup({ load_breakpoints_event = { "BufReadPost" } })
 
-      -------------------------------------------------
-      -- Rust / CodeLLDB
-      -------------------------------------------------
       dap.adapters.codelldb = {
         type = "server",
         port = "${port}",
@@ -67,9 +64,6 @@ return {
         },
       }
 
-      -------------------------------------------------
-      -- UI 自动开关
-      -------------------------------------------------
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end
@@ -83,7 +77,6 @@ return {
         dapui.close()
       end
 
-      --常用快捷键
       vim.keymap.set("n", "<F5>", dap.continue, { desc = "调试：启动/继续" })
       vim.keymap.set("n", "<F10>", dap.step_over, { desc = "调试：单步跳过" })
       vim.keymap.set("n", "<F11>", dap.step_into, { desc = "调试：单步进入" })

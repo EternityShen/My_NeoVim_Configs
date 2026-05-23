@@ -1,125 +1,196 @@
--- =============================================================================
--- completion.lua - 自动补全系统
--- =============================================================================
--- nvim-cmp 是补全框架，它本身不提供补全内容
--- 补全内容来自各种"来源"（source）：
---   - LSP（代码智能补全）
---   - buffer（当前文件中已有的词）
---   - path（文件路径补全）
---   - luasnip（代码片段）
+local kind_icons = {
+  Text          = "",
+  Method        = "",
+  Function      = "",
+  Constructor   = "",
+  Field         = "",
+  Variable      = "",
+  Class         = "",
+  Interface     = "",
+  Module        = "",
+  Property      = "",
+  Unit          = "",
+  Value         = "",
+  Enum          = "",
+  Keyword       = "",
+  Snippet       = "",
+  Color         = "",
+  File          = "",
+  Reference     = "",
+  Folder        = "",
+  EnumMember    = "",
+  Constant      = "",
+  Struct        = "",
+  Event         = "",
+  Operator      = "",
+  TypeParameter = "",
+}
+
+local source_labels = {
+  nvim_lsp = "LSP",
+  luasnip  = "Snip",
+  buffer   = "Buf",
+  path     = "Path",
+  cmdline  = "Cmd",
+}
+
+local function apply_highlights()
+  vim.api.nvim_set_hl(0, "CmpNormal",                { link = "NormalFloat" })
+  vim.api.nvim_set_hl(0, "CmpBorder",                { fg = "#89b4fa" })
+  vim.api.nvim_set_hl(0, "CmpSel",                   { bg = "#313244", bold = true })
+  vim.api.nvim_set_hl(0, "CmpDocNormal",             { link = "NormalFloat" })
+  vim.api.nvim_set_hl(0, "CmpDocBorder",             { fg = "#a6e3a1" })
+  vim.api.nvim_set_hl(0, "CmpItemAbbrMatch",         { fg = "#89b4fa", bold = true })
+  vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy",    { fg = "#89dceb", bold = true })
+  vim.api.nvim_set_hl(0, "CmpItemKindSnippet",       { fg = "#cba6f7" })
+  vim.api.nvim_set_hl(0, "CmpItemKindKeyword",       { fg = "#f38ba8" })
+  vim.api.nvim_set_hl(0, "CmpItemKindText",          { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpItemKindFunction",      { fg = "#89b4fa" })
+  vim.api.nvim_set_hl(0, "CmpItemKindMethod",        { fg = "#89b4fa" })
+  vim.api.nvim_set_hl(0, "CmpItemKindConstructor",   { fg = "#89b4fa" })
+  vim.api.nvim_set_hl(0, "CmpItemKindVariable",      { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpItemKindField",         { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpItemKindClass",         { fg = "#fab387" })
+  vim.api.nvim_set_hl(0, "CmpItemKindInterface",     { fg = "#fab387" })
+  vim.api.nvim_set_hl(0, "CmpItemKindStruct",        { fg = "#fab387" })
+  vim.api.nvim_set_hl(0, "CmpItemKindModule",        { fg = "#a6e3a1" })
+  vim.api.nvim_set_hl(0, "CmpItemKindProperty",      { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpItemKindEnum",          { fg = "#fab387" })
+  vim.api.nvim_set_hl(0, "CmpItemKindEnumMember",    { fg = "#f9e2af" })
+  vim.api.nvim_set_hl(0, "CmpItemKindConstant",      { fg = "#f9e2af" })
+  vim.api.nvim_set_hl(0, "CmpItemKindValue",         { fg = "#f9e2af" })
+  vim.api.nvim_set_hl(0, "CmpItemKindOperator",      { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#89dceb" })
+  vim.api.nvim_set_hl(0, "CmpItemKindReference",     { fg = "#f38ba8" })
+  vim.api.nvim_set_hl(0, "CmpItemKindEvent",         { fg = "#f38ba8" })
+  vim.api.nvim_set_hl(0, "CmpItemKindColor",         { fg = "#f5c2e7" })
+  vim.api.nvim_set_hl(0, "CmpItemKindFile",          { fg = "#a6e3a1" })
+  vim.api.nvim_set_hl(0, "CmpItemKindFolder",        { fg = "#a6e3a1" })
+  vim.api.nvim_set_hl(0, "CmpItemKindUnit",          { fg = "#f9e2af" })
+  vim.api.nvim_set_hl(0, "CmpItemMenu",              { fg = "#6c7086", italic = true })
+end
 
 return {
 
-  -- ─────────────────────────────────────────────
-  -- 1. 代码片段引擎：LuaSnip
-  -- ─────────────────────────────────────────────
+  -- LuaSnip: Lua 代码片段引擎
   {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
-    build = "make install_jsregexp", -- 编译正则支持（可选）
-    dependencies = {
-      -- 预置的各语言代码片段集合
-      "rafamadriz/friendly-snippets",
-    },
+    build = "make install_jsregexp",
+    dependencies = { "rafamadriz/friendly-snippets" },
     config = function()
-      local luasnip = require("luasnip")
-      -- 加载预置代码片段
       require("luasnip.loaders.from_vscode").lazy_load()
-      -- 支持从 VSCode 格式的 snippet 文件加载（friendly-snippets 就是这种格式）
-
-      -- LuaSnip 键映射已迁移到 keymaps.lua
     end,
   },
 
-  -- ─────────────────────────────────────────────
-  -- 2. nvim-cmp：补全框架主体
-  -- ─────────────────────────────────────────────
+  -- nvim-cmp: 自动补全插件
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",        -- 进入插入模式时加载
     dependencies = {
-      "L3MON4D3/LuaSnip",         -- 代码片段引擎
-      "saadparwaiz1/cmp_luasnip", -- LuaSnip 的 cmp source
-      "hrsh7th/cmp-nvim-lsp",     -- LSP 补全 source
-      "hrsh7th/cmp-buffer",       -- 当前 buffer 词汇补全
-      "hrsh7th/cmp-path",         -- 文件路径补全
-      "hrsh7th/cmp-cmdline",      -- 命令行补全
-      "onsails/lspkind.nvim",     -- 补全菜单图标（显示类型图标）
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "onsails/lspkind.nvim",
     },
     config = function()
-      local cmp = require("cmp")
+      local cmp     = require("cmp")
       local luasnip = require("luasnip")
       local lspkind = require("lspkind")
 
+      lspkind.init({
+        mode       = "symbol_text",
+        preset     = "default",
+        symbol_map = kind_icons,
+      })
+
+      apply_highlights()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern  = "*",
+        callback = apply_highlights,
+      })
+
       cmp.setup({
-        -- ── 代码片段扩展配置 ──────────────────────
+
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body) -- 使用 LuaSnip 展开片段
+            luasnip.lsp_expand(args.body)
           end,
         },
 
-        -- ── 补全窗口样式 ──────────────────────────
         window = {
-          completion    = cmp.config.window.bordered(), -- 带边框的补全窗口
-          documentation = cmp.config.window.bordered(), -- 带边框的文档窗口
+          completion = cmp.config.window.bordered({
+            winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:CmpSel,Search:None",
+            scrollbar    = false,
+            col_offset   = -3,
+            side_padding = 0,
+          }),
+          documentation = cmp.config.window.bordered({
+            winhighlight = "Normal:CmpDocNormal,FloatBorder:CmpDocBorder",
+            scrollbar    = false,
+            max_width    = 60,
+            max_height   = 20,
+          }),
         },
 
-        -- ── 键位映射 ──────────────────────────────
         mapping = require("config.keymaps").cmp_mappings(),
 
-        -- ── 补全来源配置 ──────────────────────────
-        -- 按优先级从高到低排列，排在前面的补全结果会靠前显示
         sources = cmp.config.sources({
-          { name = "nvim_lsp", priority = 1000 }, -- LSP 补全（最高优先级）
-          { name = "luasnip",  priority = 750 },  -- 代码片段
-          { name = "buffer",   priority = 500 },  -- 当前文件词汇
-          { name = "path",     priority = 250 },  -- 文件路径
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "luasnip",  priority = 750  },
+          { name = "buffer",   priority = 500  },
+          { name = "path",     priority = 250  },
         }),
 
-        -- ── 补全菜单格式化（显示图标和来源）────────
+        sorting = {
+          priority_weight = 2,
+          comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+          },
+        },
+
         formatting = {
-          format = lspkind.cmp_format({
-            mode = "symbol_text",  -- 显示图标 + 文字
-            maxwidth = 50,         -- 最大宽度
-            ellipsis_char = "...", -- 超出时显示省略号
-            -- 每种类型对应的图标（lspkind 已内置，这里可自定义）
-            symbol_map = {
-              Text        = "󰉿",
-              Method      = "󰆧",
-              Function    = "󰊕",
-              Constructor = "",
-              Variable    = "󰀫",
-              Class       = "󰠱",
-              Interface   = "",
-              Module      = "",
-              Snippet     = "",
-            },
-            -- 在图标后显示来源名称（[LSP] [Buffer] 等）
-            before = function(entry, vim_item)
-              vim_item.menu = ({
-                nvim_lsp = "[LSP]",
-                luasnip  = "[Snip]",
-                buffer   = "[Buf]",
-                path     = "[Path]",
-              })[entry.source.name]
-              return vim_item
-            end,
-          }),
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            local kind_name = vim_item.kind or ""
+            local icon      = kind_icons[kind_name] or "?"
+
+            vim_item.kind = " " .. icon .. " "
+
+            local src = source_labels[entry.source.name] or entry.source.name
+            vim_item.menu = ("  [%-13s] <%s>"):format(kind_name, src)
+
+            local label = vim_item.abbr
+            if #label > 40 then
+              vim_item.abbr = label:sub(1, 39) .. "..."
+            end
+
+            return vim_item
+          end,
+        },
+
+        experimental = {
+          ghost_text = { hl_group = "Comment" },
         },
       })
 
-      -- ── 命令行补全 ────────────────────────────
-      -- 在 : 命令行中也启用补全
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = "path" },    -- 命令行中的路径补全
-          { name = "cmdline" }, -- 命令补全
+          { name = "path"    },
+          { name = "cmdline" },
         }),
       })
 
-      -- 在 / 搜索中也启用补全
       cmp.setup.cmdline("/", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = { { name = "buffer" } },

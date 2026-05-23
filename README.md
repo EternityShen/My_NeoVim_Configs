@@ -96,6 +96,7 @@ ripgrep
 | `dashboard-nvim` | 启动欢迎界面 |
 | `noice.nvim` | 命令行美化 |
 | `mini.icons` | 图标支持 |
+| `themify.nvim` | 主题切换器 |
 
 ### 编辑器增强
 
@@ -186,7 +187,6 @@ ripgrep
 |------|------|
 | `which-key.nvim` | 快捷键提示 |
 | `nvim-ufo` | 代码折叠 |
-| `themify.nvim` | 主题切换器 |
 
 ## 快捷键映射
 
