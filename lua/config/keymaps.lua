@@ -13,7 +13,7 @@ local keymap = vim.keymap.set
 -- Leader 键设置
 -- ─────────────────────────────────────────────
 -- Leader 键是自定义快捷键的前缀键，类似于 Vim 中的 <Leader>
-vim.g.mapleader = " "      -- 全局 Leader 键设置为空格键
+vim.g.mapleader = " "      -- 全局 Leader 键设置为空格键a
 vim.g.maplocalleader = " " -- 本地 Leader 键也设置为空格键
 
 -- ─────────────────────────────────────────────
@@ -202,6 +202,8 @@ keymap("n", "dd", '"_dd', { desc = "删除当前行" })
 keymap("v", "d", '"_d', { desc = "删除选中" })
 keymap("n", "xx", ':delete<CR>', { desc = "剪切当前行" })
 keymap("v", "x", ':delete<CR>', { desc = "剪切选中" })
+keymap("n", "cc", 'yy', { desc = "复制当前行" })
+keymap("v", "c", 'y', { desc = "复制选中" })
 
 vim.keymap.set('n', 'gD', '<CMD>Lspsaga goto_definition<CR>', { desc = "跳转到定义" })
 vim.keymap.set('n', 'gd', '<CMD>Glance definitions<CR>', { desc = "查看定义" })
