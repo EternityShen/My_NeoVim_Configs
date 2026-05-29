@@ -64,6 +64,12 @@ keymap("n", "<Esc>", ":nohl<Cr>", { noremap = true, silent = true, desc = "清�
 keymap("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true, desc = "下移行" })
 keymap("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true, desc = "上移行" })
 
+-- 光标移动到第一行/最后一行
+keymap("n", "gg", "gg", { noremap = true, silent = true, desc = "移动到第一行" })
+keymap("n", "gG", "G", { noremap = true, silent = true, desc = "移动到最后一行" })
+keymap("v", "gg", "gg", { noremap = true, silent = true, desc = "移动到第一行" })
+keymap("v", "gG", "G", { noremap = true, silent = true, desc = "移动到最后一行" })
+
 -- ─────────────────────────────────────────────
 -- 插入模式快捷键
 -- ─────────────────────────────────────────────

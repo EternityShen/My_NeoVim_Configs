@@ -167,7 +167,7 @@ return {
             vim_item.kind = " " .. icon .. " "
 
             local src = source_labels[entry.source.name] or entry.source.name
-            vim_item.menu = ("  [%-13s] <%s>"):format(kind_name, src)
+            vim_item.menu = ("  [%-8s] <%s>"):format(kind_name, src)
 
             local label = vim_item.abbr
             if #label > 40 then

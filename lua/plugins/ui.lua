@@ -159,7 +159,7 @@ return {
     "rcarriga/nvim-notify",
     opts = {
       timeout = 3000,
-      max_width = 100,
+      max_width = 50,
       render = "compact",
       stages = "fade",
     },
