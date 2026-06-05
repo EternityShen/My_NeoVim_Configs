@@ -26,6 +26,11 @@ keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "跳转�
 keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true, desc = "跳转上窗口" })
 keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true, desc = "跳转右窗口" })
 
+keymap("n", "<C-Left>", "<C-w>h", { noremap = true, silent = true, desc = "跳转左窗口" })
+keymap("n", "<C-Down>", "<C-w>j", { noremap = true, silent = true, desc = "跳转下窗口" })
+keymap("n", "<C-Up>", "<C-w>k", { noremap = true, silent = true, desc = "跳转上窗口" })
+keymap("n", "<C-Right>", "<C-w>l", { noremap = true, silent = true, desc = "跳转右窗口" })
+
 -- 在插入模式下，跳转窗口
 -- keymap("i", "<C-h>", "<C-w>h", { noremap = true, silent = true, desc = "跳转左窗口" })
 -- keymap("i", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "跳转下窗口" })
