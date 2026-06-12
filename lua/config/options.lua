@@ -14,8 +14,8 @@ opt.termguicolors = true
 
 
 
-opt.number = true         -- 显示行号（当前行显示绝对行号）
-opt.relativenumber = true -- 显示相对行号（其他行显示与当前行的距离）
+opt.number = true          -- 显示行号（当前行显示绝对行号）
+opt.relativenumber = false -- 显示相对行号（其他行显示与当前行的距离）
 -- 配合 number=true，当前行显示真实行号，其他行显示相对距离
 -- 这样可以快速用 5j / 5k 跳转到相对位置
 

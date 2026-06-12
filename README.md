@@ -181,12 +181,20 @@ ripgrep
 | `nvim-dap-virtual-text` | 行内显示变量值 |
 | `persistent-breakpoints.nvim` | 持久化断点 |
 
+### AI
+| 插件 | 说明 |
+|------|------|
+| `Copilot` | Copilot_AI |
+| `Copilot_Chat` | Copilot_聊天 |
+
+
 ### 其他
 
 | 插件 | 说明 |
 |------|------|
 | `which-key.nvim` | 快捷键提示 |
 | `nvim-ufo` | 代码折叠 |
+
 
 ## 快捷键映射
 

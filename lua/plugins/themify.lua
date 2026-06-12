@@ -20,6 +20,10 @@ return {
       "sponkurtus2/angelic.nvim",
       "daltonmenezes/aura-theme",
       "uhs-robert/oasis.nvim",
+
+      "rijulpaul/nightblossom.nvim",
+
+      "Mofiqul/dracula.nvim",
       activity = {
         enabled = true,
       },

@@ -170,6 +170,15 @@ return {
     end,
   },
 
+  -- 一堆美化插件
+  {
+    "stevearc/dressing.nvim",
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    "nvim-tree/nvim-web-devicons",
+    "MeanderingProgrammer/render-markdown.nvim",
+  },
+
 
 
   -- dashboard-nvim: 启动界面插件

@@ -123,23 +123,29 @@ return {
         window = {
           completion = cmp.config.window.bordered({
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:CmpSel,Search:None",
-            scrollbar    = false,
-            col_offset   = -3,
-            side_padding = 0,
+            scrollbar    = true,
+            scrollbar_pad = 1,
+            col_offset   = -1,
+            side_padding = 1,
+            border       = "rounded",
+            zindex       = 1001,
           }),
           documentation = cmp.config.window.bordered({
             winhighlight = "Normal:CmpDocNormal,FloatBorder:CmpDocBorder",
-            scrollbar    = false,
-            max_width    = 60,
-            max_height   = 20,
+            scrollbar    = true,
+            scrollbar_pad = 1,
+            max_width    = 70,
+            max_height   = 25,
+            border       = "rounded",
+            zindex       = 1000,
           }),
         },
 
         mapping = require("config.keymaps").cmp_mappings(),
 
         sources = cmp.config.sources({
+          { name = "luasnip",  priority = 2000 },
           { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip",  priority = 750  },
           { name = "buffer",   priority = 500  },
           { name = "path",     priority = 250  },
         }),
