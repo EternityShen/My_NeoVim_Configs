@@ -180,7 +180,6 @@ return {
   },
 
 
-
   -- dashboard-nvim: 启动界面插件
   {
     "nvimdev/dashboard-nvim",

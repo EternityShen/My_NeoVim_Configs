@@ -57,7 +57,6 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
-
         },
         automatic_installation = function(server_name)
           return server_name ~= "rust_analyzer"
