@@ -6,7 +6,7 @@ return {
     require("copilot").setup({
       suggestion = {
         enabled = true,
-        auto_trigger = true,
+        auto_trigger = false,
         keymap = {
           accept = "<A-w>",
           next = "<M-]>",
@@ -14,7 +14,7 @@ return {
           dismiss = "<C-]>",
         },
       },
-      panel = { enabled = false},
+      panel = { enabled = false },
     })
   end,
 }

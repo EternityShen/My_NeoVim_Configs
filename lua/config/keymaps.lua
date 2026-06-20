@@ -21,11 +21,6 @@ vim.g.maplocalleader = " " -- 本地 Leader 键也设置为空格键
 -- ─────────────────────────────────────────────
 
 -- 窗口跳转
-keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true, desc = "跳转左窗口" })
-keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true, desc = "跳转下窗口" })
-keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true, desc = "跳转上窗口" })
-keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true, desc = "跳转右窗口" })
-
 keymap("n", "<C-Left>", "<C-w>h", { noremap = true, silent = true, desc = "跳转左窗口" })
 keymap("n", "<C-Down>", "<C-w>j", { noremap = true, silent = true, desc = "跳转下窗口" })
 keymap("n", "<C-Up>", "<C-w>k", { noremap = true, silent = true, desc = "跳转上窗口" })
@@ -41,21 +36,22 @@ keymap("n", "<C-Right>", "<C-w>l", { noremap = true, silent = true, desc = "跳�
 -- 快速退出
 keymap("n", "<leader>q", ":q<CR>", { noremap = true, silent = true, desc = "退出" })
 keymap("n", "<leader>Q", ":qa<CR>", { noremap = true, silent = true, desc = "全部退出" })
-keymap("n", "<leader>W", ":wa<CR>", { noremap = true, silent = true, desc = "全部保存" })
+--[[ keymap("n", "<leader>W", ":wa<CR>", { noremap = true, silent = true, desc = "全部保存" }) ]]
 keymap("n", "<leader>w", ":w<CR>", { noremap = true, silent = true, desc = "保存" })
 
 -- 窗口操作
-keymap("n", "<leader>c", "<Nop>", { desc = "窗口操作" })
-keymap("n", "<leader>cv", "<cmd>vsplit<cr>", { desc = "垂直分割" })
-keymap("n", "<leader>ch", "<cmd>split<cr>", { desc = "水平分割" })
-keymap("n", "<leader>cc", "<cmd>close<cr>", { desc = "关闭窗口" })
-keymap("n", "<leader>co", "<cmd>only<cr>", { desc = "关闭其他" })
-keymap("n", "<leader>cr", "<cmd>wincmd r<cr>", { desc = "旋转窗口" })
-keymap("n", "<leader>cm", "<cmd>maximize<cr>", { desc = "最大化窗口" })
-keymap("n", "<leader>c=", "<cmd>wincmd =<cr>", { desc = "平衡窗口" })
-keymap("n", "<A-s>", "<cmd>resize -5<cr>", { desc = "高度减少" })
-keymap("n", "<A-w>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
-keymap("n", "<A-a>", "<cmd>vertical resize -5<cr>", { desc = "宽度减少" })
+keymap("n", "<leader>W", "<Nop>", { desc = "窗口操作" })
+keymap("n", "<leader>Wv", "<cmd>vsplit<cr>", { desc = "垂直分割" })
+keymap("n", "<leader>Wh", "<cmd>split<cr>", { desc = "水平分割" })
+keymap("n", "<leader>Wc", "<cmd>close<cr>", { desc = "关闭窗口" })
+keymap("n", "<leader>Wo", "<cmd>only<cr>", { desc = "关闭其他" })
+keymap("n", "<leader>Wr", "<cmd>wincmd r<cr>", { desc = "旋转窗口" })
+keymap("n", "<leader>Wm", "<cmd>maximize<cr>", { desc = "最大化窗口" })
+keymap("n", "<leader>W=", "<cmd>wincmd =<cr>", { desc = "平衡窗口" })
+keymap("n", "<C-k>", "<cmd>resize +5<cr>", { desc = "高度减少" })
+keymap("n", "<C-j>", "<cmd>resize -5<cr>", { desc = "高度减少" })
+keymap("n", "<C-l>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
+keymap("n", "<C-h>", "<cmd>vertical resize -5<cr>", { desc = "宽度减少" })
 
 -- 翻页居中
 keymap("n", "<C-c>", "<C-d>zz", { noremap = true, silent = true, desc = "向下翻页" })

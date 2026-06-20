@@ -202,7 +202,7 @@ ripgrep
 
 | 模式 | Key | 作用 |
 |-----|-----|------|
-| N | `<C-h/j/k/l>` | 窗口跳转（左/下/上/右） |
+| N | `<C-Left/Down/Up/Right>` | 窗口跳转（左/下/上/右） |
 | N | `<C-c>` | 向下翻页并居中 |
 | N | `<C-u>` | 向上翻页并居中 |
 | N | `<Esc>` | 清除搜索高亮 |
@@ -213,22 +213,22 @@ ripgrep
 | N | `<leader>q` | 退出 |
 | N | `<leader>Q` | 全部退出 |
 | N | `<leader>w` | 保存 |
-| N | `<leader>W` | 全部保存 |
 
 ### 窗口操作
 
 | 模式 | Key | 作用 |
 |-----|-----|------|
-| N | `<leader>cv` | 垂直分割窗口 |
-| N | `<leader>ch` | 水平分割窗口 |
-| N | `<leader>cc` | 关闭窗口 |
-| N | `<leader>co` | 关闭其他窗口 |
-| N | `<leader>cr` | 旋转窗口 |
-| N | `<leader>cm` | 最大化窗口 |
-| N | `<leader>c=` | 平衡窗口 |
-| N | `<A-s>` | 高度减少 |
-| N | `<A-w>` | 宽度增加 |
-| N | `<A-a>` | 宽度减少 |
+| N | `<leader>Wv` | 垂直分割窗口 |
+| N | `<leader>Wh` | 水平分割窗口 |
+| N | `<leader>Wc` | 关闭窗口 |
+| N | `<leader>Wo` | 关闭其他窗口 |
+| N | `<leader>Wr` | 旋转窗口 |
+| N | `<leader>Wm` | 最大化窗口 |
+| N | `<leader>W=` | 平衡窗口 |
+| N | `<C-k>` | 高度减少 |
+| N | `<C-j>` | 高度减少 |
+| N | `<C-l>` | 宽度增加 |
+| N | `<C-h>` | 宽度减少 |
 
 ### 插入模式 (Insert Mode)
 
@@ -351,6 +351,14 @@ ripgrep
 | N | `<leader>bh` | 向左移动buffer |
 | N | `<leader>bm` | 向右移动buffer |
 
+### C++ 开发
+
+| 模式 | Key | 作用 |
+|-----|-----|------|
+| N | `<leader>cb` | 构建项目（cmake，输出到 ./build） |
+| N | `<leader>cr` | 构建并运行 |
+| N | `<leader>cd` | 构建并调试（自动检测 ./build 中的可执行文件） |
+
 ### 调试 (Debug)
 
 | 模式 | Key | 作用 |
@@ -394,6 +402,13 @@ ripgrep
 - rustaceanvim 完整 Rust LSP 集成
 - crates.nvim Cargo 依赖管理
 - 内置运行、测试、调试快捷键
+
+### C++ 开发支持
+- codelldb 调试器（通过 Mason 自动安装）
+- 一键构建：`<leader>cb`（cmake，输出到 ./build）
+- 一键运行：`<leader>cr`（构建 + 运行）
+- 一键调试：`<leader>cd`（构建 + 调试，入口自动暂停）
+- 自动检测 ./build 中的 ELF 可执行文件
 
 ### 代码格式化
 - conform.nvim 自动格式化
