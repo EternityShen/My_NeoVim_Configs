@@ -35,39 +35,39 @@ local source_labels = {
 }
 
 local function apply_highlights()
-  vim.api.nvim_set_hl(0, "CmpNormal",                { link = "NormalFloat" })
-  vim.api.nvim_set_hl(0, "CmpBorder",                { fg = "#89b4fa" })
-  vim.api.nvim_set_hl(0, "CmpSel",                   { bg = "#313244", bold = true })
-  vim.api.nvim_set_hl(0, "CmpDocNormal",             { link = "NormalFloat" })
-  vim.api.nvim_set_hl(0, "CmpDocBorder",             { fg = "#a6e3a1" })
-  vim.api.nvim_set_hl(0, "CmpItemAbbrMatch",         { fg = "#89b4fa", bold = true })
-  vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy",    { fg = "#89dceb", bold = true })
-  vim.api.nvim_set_hl(0, "CmpItemKindSnippet",       { fg = "#cba6f7" })
-  vim.api.nvim_set_hl(0, "CmpItemKindKeyword",       { fg = "#f38ba8" })
-  vim.api.nvim_set_hl(0, "CmpItemKindText",          { fg = "#cdd6f4" })
-  vim.api.nvim_set_hl(0, "CmpItemKindFunction",      { fg = "#89b4fa" })
-  vim.api.nvim_set_hl(0, "CmpItemKindMethod",        { fg = "#89b4fa" })
-  vim.api.nvim_set_hl(0, "CmpItemKindConstructor",   { fg = "#89b4fa" })
-  vim.api.nvim_set_hl(0, "CmpItemKindVariable",      { fg = "#cdd6f4" })
-  vim.api.nvim_set_hl(0, "CmpItemKindField",         { fg = "#cdd6f4" })
-  vim.api.nvim_set_hl(0, "CmpItemKindClass",         { fg = "#fab387" })
-  vim.api.nvim_set_hl(0, "CmpItemKindInterface",     { fg = "#fab387" })
-  vim.api.nvim_set_hl(0, "CmpItemKindStruct",        { fg = "#fab387" })
-  vim.api.nvim_set_hl(0, "CmpItemKindModule",        { fg = "#a6e3a1" })
-  vim.api.nvim_set_hl(0, "CmpItemKindProperty",      { fg = "#cdd6f4" })
-  vim.api.nvim_set_hl(0, "CmpItemKindEnum",          { fg = "#fab387" })
-  vim.api.nvim_set_hl(0, "CmpItemKindEnumMember",    { fg = "#f9e2af" })
-  vim.api.nvim_set_hl(0, "CmpItemKindConstant",      { fg = "#f9e2af" })
-  vim.api.nvim_set_hl(0, "CmpItemKindValue",         { fg = "#f9e2af" })
-  vim.api.nvim_set_hl(0, "CmpItemKindOperator",      { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpNormal", { link = "NormalFloat" })
+  vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#89b4fa" })
+  vim.api.nvim_set_hl(0, "CmpSel", { bg = "#313244", bold = true })
+  vim.api.nvim_set_hl(0, "CmpDocNormal", { link = "NormalFloat" })
+  vim.api.nvim_set_hl(0, "CmpDocBorder", { fg = "#a6e3a1" })
+  vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#89b4fa", bold = true })
+  vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#89dceb", bold = true })
+  vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "#cba6f7" })
+  vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { fg = "#f38ba8" })
+  vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpItemKindFunction", { fg = "#89b4fa" })
+  vim.api.nvim_set_hl(0, "CmpItemKindMethod", { fg = "#89b4fa" })
+  vim.api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = "#89b4fa" })
+  vim.api.nvim_set_hl(0, "CmpItemKindVariable", { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpItemKindField", { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpItemKindClass", { fg = "#fab387" })
+  vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#fab387" })
+  vim.api.nvim_set_hl(0, "CmpItemKindStruct", { fg = "#fab387" })
+  vim.api.nvim_set_hl(0, "CmpItemKindModule", { fg = "#a6e3a1" })
+  vim.api.nvim_set_hl(0, "CmpItemKindProperty", { fg = "#cdd6f4" })
+  vim.api.nvim_set_hl(0, "CmpItemKindEnum", { fg = "#fab387" })
+  vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { fg = "#f9e2af" })
+  vim.api.nvim_set_hl(0, "CmpItemKindConstant", { fg = "#f9e2af" })
+  vim.api.nvim_set_hl(0, "CmpItemKindValue", { fg = "#f9e2af" })
+  vim.api.nvim_set_hl(0, "CmpItemKindOperator", { fg = "#cdd6f4" })
   vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#89dceb" })
-  vim.api.nvim_set_hl(0, "CmpItemKindReference",     { fg = "#f38ba8" })
-  vim.api.nvim_set_hl(0, "CmpItemKindEvent",         { fg = "#f38ba8" })
-  vim.api.nvim_set_hl(0, "CmpItemKindColor",         { fg = "#f5c2e7" })
-  vim.api.nvim_set_hl(0, "CmpItemKindFile",          { fg = "#a6e3a1" })
-  vim.api.nvim_set_hl(0, "CmpItemKindFolder",        { fg = "#a6e3a1" })
-  vim.api.nvim_set_hl(0, "CmpItemKindUnit",          { fg = "#f9e2af" })
-  vim.api.nvim_set_hl(0, "CmpItemMenu",              { fg = "#6c7086", italic = true })
+  vim.api.nvim_set_hl(0, "CmpItemKindReference", { fg = "#f38ba8" })
+  vim.api.nvim_set_hl(0, "CmpItemKindEvent", { fg = "#f38ba8" })
+  vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#f5c2e7" })
+  vim.api.nvim_set_hl(0, "CmpItemKindFile", { fg = "#a6e3a1" })
+  vim.api.nvim_set_hl(0, "CmpItemKindFolder", { fg = "#a6e3a1" })
+  vim.api.nvim_set_hl(0, "CmpItemKindUnit", { fg = "#f9e2af" })
+  vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#6c7086", italic = true })
 end
 
 return {
@@ -80,6 +80,34 @@ return {
     dependencies = { "rafamadriz/friendly-snippets" },
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
+
+      local ls = require("luasnip")
+      local s = ls.snippet
+      local t = ls.text_node
+      local i = ls.insert_node
+      local rep = require("luasnip.extras").rep
+
+      -- 1. 保留你之前的 C++ 模版
+      ls.add_snippets("cpp", {
+        s("myclass", {
+          t("class "), i(1, "ClassName"), t({ " {", "public:", "    " }),
+          rep(1), t("();"),
+          t({ "", "    ~" }), rep(1), t("();"),
+          t({ "", "};" }),
+        }),
+      })
+
+      -- 2. 新增 Dart 模版
+      -- 在 .dart 文件中敲 `myclass` 触发
+      ls.add_snippets("dart", {
+        s("myclass", {
+          t("class "), i(1, "ClassName"), t({ " {", "  " }),
+          -- 构造函数
+          rep(1), t("();"),
+          -- 模拟析构/资源释放的 dispose 方法
+          t({ "", "", "  void dispose() {", "    // TODO: implement dispose", "  }", "}" }),
+        }),
+      })
     end,
   },
 
@@ -122,22 +150,22 @@ return {
 
         window = {
           completion = cmp.config.window.bordered({
-            winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:CmpSel,Search:None",
-            scrollbar    = true,
+            winhighlight  = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:CmpSel,Search:None",
+            scrollbar     = true,
             scrollbar_pad = 1,
-            col_offset   = -1,
-            side_padding = 1,
-            border       = "rounded",
-            zindex       = 1001,
+            col_offset    = -1,
+            side_padding  = 1,
+            border        = "rounded",
+            zindex        = 1001,
           }),
           documentation = cmp.config.window.bordered({
-            winhighlight = "Normal:CmpDocNormal,FloatBorder:CmpDocBorder",
-            scrollbar    = true,
+            winhighlight  = "Normal:CmpDocNormal,FloatBorder:CmpDocBorder",
+            scrollbar     = true,
             scrollbar_pad = 1,
-            max_width    = 70,
-            max_height   = 25,
-            border       = "rounded",
-            zindex       = 1000,
+            max_width     = 70,
+            max_height    = 25,
+            border        = "rounded",
+            zindex        = 1000,
           }),
         },
 
@@ -146,8 +174,8 @@ return {
         sources = cmp.config.sources({
           { name = "luasnip",  priority = 800 },
           { name = "nvim_lsp", priority = 1000 },
-          { name = "buffer",   priority = 500  },
-          { name = "path",     priority = 250  },
+          { name = "buffer",   priority = 500 },
+          { name = "path",     priority = 250 },
         }),
 
         sorting = {
@@ -170,12 +198,12 @@ return {
             local kind_name = vim_item.kind or ""
             local icon      = kind_icons[kind_name] or "?"
 
-            vim_item.kind = " " .. icon .. " "
+            vim_item.kind   = " " .. icon .. " "
 
-            local src = source_labels[entry.source.name] or entry.source.name
-            vim_item.menu = ("  [%-8s] <%s>"):format(kind_name, src)
+            local src       = source_labels[entry.source.name] or entry.source.name
+            vim_item.menu   = ("  [%-8s] <%s>"):format(kind_name, src)
 
-            local label = vim_item.abbr
+            local label     = vim_item.abbr
             if #label > 40 then
               vim_item.abbr = label:sub(1, 39) .. "..."
             end
@@ -192,7 +220,7 @@ return {
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = "path"    },
+          { name = "path" },
           { name = "cmdline" },
         }),
       })
