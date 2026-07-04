@@ -79,8 +79,11 @@ return {
       { "za", desc = "切换折叠" },
 
       { "ze", desc = "向左翻动窗口" },
-      { "zs", desc = "向右翻动窗口" }
+      { "zs", desc = "向右翻动窗口" },
 
+      { "nw", desc = "当前窗口minimap操作"},
+      { "nt", desc = "当前标签页minimap操作"},
+      { "nd", desc = "当前缓冲区的minimap操作"}
 
     })
   end,
