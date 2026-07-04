@@ -71,6 +71,11 @@ return {
       { "<leader>gr", desc = "重置hunk" },
       { "<leader>gp", desc = "预览hunk" },
 
+      { "<leader>n", desc = "minimap操作" },
+      { "<leader>nw", desc = "当前窗口minimap操作" },
+      { "<leader>nt", desc = "当前标签页minimap操作" },
+      { "<leader>nd", desc = "当前缓冲区的minimap操作" },
+
       { "z", group = "代码折叠" },
       { "zM", desc = "关闭所有折叠" },
       { "zR", desc = "展开所有折叠" },
@@ -79,11 +84,7 @@ return {
       { "za", desc = "切换折叠" },
 
       { "ze", desc = "向左翻动窗口" },
-      { "zs", desc = "向右翻动窗口" },
-
-      { "nw", desc = "当前窗口minimap操作"},
-      { "nt", desc = "当前标签页minimap操作"},
-      { "nd", desc = "当前缓冲区的minimap操作"}
+      { "zs", desc = "向右翻动窗口" }
 
     })
   end,
