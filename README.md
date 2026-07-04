@@ -67,7 +67,7 @@ Remove-Item -Path $env:LOCALAPPDATA\nvim-data\lazy -Recurse -Force -ErrorAction 
 Remove-Item -Path $env:LOCALAPPDATA\nvim-cache -Recurse -Force -ErrorAction SilentlyContinue
 ```
 
-#### ArchLinux 所需的依赖的包
+#### 所需的依赖的包
 ```txt
 # 查找工具
 fd
@@ -75,6 +75,8 @@ fd
 unzip
 # 全局查找依赖
 ripgrep
+# 语法解析
+treesitter-cli
 ```
 
 ## 插件列表
