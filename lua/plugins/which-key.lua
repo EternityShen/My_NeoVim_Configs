@@ -10,7 +10,7 @@ return {
     wk.setup({
       preset = "modern",
 
-      delay = 200,
+      delay = 100,
 
       expand = 1,
 
@@ -36,9 +36,9 @@ return {
 
       win = {
         border = "rounded",
-        padding = { 1, 3 },
+        padding = { 1, 1 },
         wo = {
-          winblend = 30,
+          winblend = 0,
         },
       },
 
@@ -74,7 +74,7 @@ return {
       { "<leader>n", desc = "minimap操作" },
       { "<leader>nw", desc = "当前窗口minimap操作" },
       { "<leader>nt", desc = "当前标签页minimap操作" },
-      { "<leader>nd", desc = "当前缓冲区的minimap操作" },
+      { "<leader>nb", desc = "当前缓冲区的minimap操作" },
 
       { "z", group = "代码折叠" },
       { "zM", desc = "关闭所有折叠" },
