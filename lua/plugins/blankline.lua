@@ -2,7 +2,7 @@ return {
   -- indent-blankline.nvim: 缩进参考线插件
   "lukas-reineke/indent-blankline.nvim",
 
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufNewFile" },
 
   main = "ibl",
 

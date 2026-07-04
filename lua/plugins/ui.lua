@@ -30,8 +30,7 @@ return {
   -- lualine.nvim: 状态栏插件
   {
     "nvim-lualine/lualine.nvim",
-    -- 在读取已有文件或新建文件时触发
-    event = { "BufReadPost", "BufNewFile" },
+    event = "VimEnter",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
       "catppuccin/nvim",
@@ -41,6 +40,7 @@ return {
         component_separators = "|",
         section_separators = "",
         globalstatus = true,
+
       },
       sections = {
         lualine_a = { "mode" },
