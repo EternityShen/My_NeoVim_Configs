@@ -13,6 +13,18 @@ return {
   opts = {
     server = {
       standalone = true,
+      -- settings = {
+      --   ["rust-analyzer"] = {
+      --     checkOnSave = {
+      --       command = "check",
+      --     },
+      --     cargo = {
+      --       buildScripts = {
+      --         enable = true,
+      --       },
+      --     },
+      --   },
+      -- },
     },
   },
 

@@ -62,6 +62,7 @@ return {
     wk.add({
 
       { "<leader>c", group = "C/C++" },
+      { "<leader>t", group = "翻译" },
       { "<leader>d", group = "调试操作" },
       { "<leader>b", group = "buffers操作" },
       { "<leader>l", group = "LSP" },

@@ -89,7 +89,7 @@ keymap("v", "p", '"_dP', { noremap = true, silent = true, desc = "粘贴不覆�
 -- 终端模式快捷键
 -- ─────────────────────────────────────────────
 keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "退出终端" })
-keymap("n", "<leader>t", "<cmd>terminal<cr>")
+keymap("n", "<leader> /", "<cmd>terminal<cr>", { noremap = true, silent = true, desc = "打开终端" })
 
 -- ─────────────────────────────────────────────
 -- Telescope 搜索
