@@ -32,7 +32,7 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
     dependencies = {
-      "nvim-tree/nvim-web-devicons",
+      "Mirsmog/real-icons.nvim",
       "catppuccin/nvim",
     },
     opts = {
@@ -58,7 +58,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
+    dependencies = "Mirsmog/real-icons.nvim",
     config = function()
       local function smart_close()
         if vim.bo.modified then
@@ -175,7 +175,7 @@ return {
     "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
-    "nvim-tree/nvim-web-devicons",
+    "Mirsmog/real-icons.nvim",
     "MeanderingProgrammer/render-markdown.nvim",
   },
 
@@ -184,7 +184,7 @@ return {
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "Mirsmog/real-icons.nvim" },
     opts = {
       theme = "doom",
       config = {

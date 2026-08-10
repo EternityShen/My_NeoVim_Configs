@@ -71,6 +71,12 @@ keymap("n", "gG", "G", { noremap = true, silent = true, desc = "移动到最后�
 keymap("v", "gg", "gg", { noremap = true, silent = true, desc = "移动到第一行" })
 keymap("v", "gG", "G", { noremap = true, silent = true, desc = "移动到最后一行" })
 
+-- Shift+方向键 移动5行
+keymap("n", "<S-Up>", "5k", { noremap = true, silent = true, desc = "上移5行" })
+keymap("n", "<S-Down>", "5j", { noremap = true, silent = true, desc = "下移5行" })
+keymap("v", "<S-Up>", "5k", { noremap = true, silent = true, desc = "上移5行" })
+keymap("v", "<S-Down>", "5j", { noremap = true, silent = true, desc = "下移5行" })
+
 -- ─────────────────────────────────────────────
 -- 插入模式快捷键
 -- ─────────────────────────────────────────────
@@ -89,7 +95,7 @@ keymap("v", "p", '"_dP', { noremap = true, silent = true, desc = "粘贴不覆�
 -- 终端模式快捷键
 -- ─────────────────────────────────────────────
 keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "退出终端" })
-keymap("n", "<leader> /", "<cmd>terminal<cr>", { noremap = true, silent = true, desc = "打开终端" })
+keymap("n", "<leader>/", "<cmd>terminal<cr>", { noremap = true, silent = true, desc = "打开终端" })
 
 -- ─────────────────────────────────────────────
 -- Telescope 搜索

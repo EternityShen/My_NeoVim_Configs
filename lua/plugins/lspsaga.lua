@@ -11,7 +11,7 @@ return {
   -- 依赖项
   dependencies = {
     -- 文件类型图标支持
-    { "nvim-tree/nvim-web-devicons" },
+    { "Mirsmog/real-icons.nvim" },
   },
 
   -- 插件选项
