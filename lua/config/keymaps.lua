@@ -36,18 +36,17 @@ keymap("n", "<C-Right>", "<C-w>l", { noremap = true, silent = true, desc = "跳�
 -- 快速退出
 keymap("n", "<leader>q", ":q<CR>", { noremap = true, silent = true, desc = "退出" })
 keymap("n", "<leader>Q", ":qa<CR>", { noremap = true, silent = true, desc = "全部退出" })
-keymap("n", "<leader>W", ":wa<CR>", { noremap = true, silent = true, desc = "全部保存" })
 keymap("n", "<leader>w", ":w<CR>", { noremap = true, silent = true, desc = "保存" })
 
--- 窗口操作
-keymap("n", "<leader>c", "<Nop>", { desc = "窗口操作" })
-keymap("n", "<leader>cv", "<cmd>vsplit<cr>", { desc = "垂直分割" })
-keymap("n", "<leader>ch", "<cmd>split<cr>", { desc = "水平分割" })
-keymap("n", "<leader>cc", "<cmd>close<cr>", { desc = "关闭窗口" })
-keymap("n", "<leader>co", "<cmd>only<cr>", { desc = "关闭其他" })
-keymap("n", "<leader>cr", "<cmd>wincmd r<cr>", { desc = "旋转窗口" })
-keymap("n", "<leader>cm", "<cmd>maximize<cr>", { desc = "最大化窗口" })
-keymap("n", "<leader>c=", "<cmd>wincmd =<cr>", { desc = "平衡窗口" })
+-- 窗口操作（leader + W）
+keymap("n", "<leader>W", "<Nop>", { desc = "窗口操作" })
+keymap("n", "<leader>Wv", "<cmd>vsplit<cr>", { desc = "垂直分割" })
+keymap("n", "<leader>Wh", "<cmd>split<cr>", { desc = "水平分割" })
+keymap("n", "<leader>Wc", "<cmd>close<cr>", { desc = "关闭窗口" })
+keymap("n", "<leader>Wo", "<cmd>only<cr>", { desc = "关闭其他" })
+keymap("n", "<leader>Wr", "<cmd>wincmd r<cr>", { desc = "旋转窗口" })
+keymap("n", "<leader>Wm", "<cmd>maximize<cr>", { desc = "最大化窗口" })
+keymap("n", "<leader>W=", "<cmd>wincmd =<cr>", { desc = "平衡窗口" })
 keymap("n", "<A-s>", "<cmd>resize -5<cr>", { desc = "高度减少" })
 keymap("n", "<A-w>", "<cmd>vertical resize +5<cr>", { desc = "宽度增加" })
 keymap("n", "<A-a>", "<cmd>vertical resize -5<cr>", { desc = "宽度减少" })
@@ -63,6 +62,14 @@ keymap("n", "<Esc>", ":nohl<Cr>", { noremap = true, silent = true, desc = "清�
 -- 移动行
 keymap("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true, desc = "下移行" })
 keymap("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true, desc = "上移行" })
+
+-- ─────────────────────────────────────────────
+-- 编辑操作（复制 / 剪切，无需 leader）
+-- ─────────────────────────────────────────────
+keymap("n", "cc", "yy", { noremap = true, silent = true, desc = "复制当前行" })
+keymap("v", "cc", "y", { noremap = true, silent = true, desc = "复制选中" })
+keymap("n", "xx", "dd", { noremap = true, silent = true, desc = "剪切当前行" })
+keymap("v", "xx", "d", { noremap = true, silent = true, desc = "剪切选中" })
 
 -- ─────────────────────────────────────────────
 -- 插入模式快捷键
@@ -123,7 +130,7 @@ function M.lsp_on_attach(client, bufnr)
       { buffer = bufnr, noremap = true, silent = true, desc = "LSP: " .. desc })
   end
   map("K", vim.lsp.buf.hover, "悬浮文档")
-  map("<leader>ca", vim.lsp.buf.code_action, "代码动作")
+  map("<leader>za", vim.lsp.buf.code_action, "代码动作")
   map("<leader>rn", vim.lsp.buf.rename, "重命名")
   map("<leader>lf", function() vim.lsp.buf.format({ async = true }) end, "格式化")
   map("[d", vim.diagnostic.goto_prev, "上一诊断")
@@ -201,8 +208,6 @@ keymap("n", "<leader>lr", ":Lspsaga rename<CR>", { desc = "重命名全部" })
 
 keymap("n", "dd", '"_dd', { desc = "删除当前行" })
 keymap("v", "d", '"_d', { desc = "删除选中" })
-keymap("n", "xx", ':delete<CR>', { desc = "剪切当前行" })
-keymap("v", "x", ':delete<CR>', { desc = "剪切选中" })
 
 vim.keymap.set('n', 'gD', '<CMD>Lspsaga goto_definition<CR>', { desc = "跳转到定义" })
 vim.keymap.set('n', 'gd', '<CMD>Glance definitions<CR>', { desc = "查看定义" })

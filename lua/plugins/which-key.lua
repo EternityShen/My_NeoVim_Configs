@@ -81,7 +81,10 @@ return {
     wk.add({
 
       -- Leader 键快捷键
+      { "<leader>c", group = "复制" },
       { "<leader>d", group = "调试操作" },
+      { "<leader>x", group = "剪切" },
+      { "<leader>W", group = "窗口操作" },
       { "<leader>b", group = "buffers操作" },
       { "<leader>l", group = "LSP" },
       -- Git
